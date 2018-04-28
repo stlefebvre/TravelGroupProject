@@ -19,4 +19,28 @@ $(document).ready(function () {
 
     var googleMapAPIKey = "AIzaSyBztLFObJ_vMG1zhWlzys8DWeiONElq2EI"
 
+    var auth = firebase.auth();
+ 
+    $("body").on("click", "#btnLogin", function (){
+      var email = $("#user-email").val();
+      var password = $("#password").val();
+     var promise = auth.signInWithEmailAndPassword(email, password)
+     console.log(promise)
+     promise.catch(function(error) {
+         console.log(error.code);
+         console.log(error.message);
+      });
+      });
+    
+    $("body").on("click", "#btnSignUp", function (){
+        var email = $("#user-email").val();
+        var password = $("#password").val();
+      var promise = auth.createUserWithEmailAndPassword(email, password)
+      console.log(promise)
+      promise.catch(function(error) {
+             console.log(error.code);
+             console.log(error.message);
+          });
+          });
+
 })
