@@ -66,4 +66,41 @@ $(document).ready(function () {
         database.ref().push(newUser);
     });
 
+    //  Complete Travel Survey
+    $("#start-journey").on("click", function (event) {
+        // prevent page from refreshing when form tries to submit itself
+        event.preventDefault();
+        // Capture user inputs and store them into variables
+        //var startDate = $("#start-date").val();
+        //var startDateMoment = moment(startDate);
+        //var startDateMoment = moment($("#start-date").val());
+        var startDate = $("#start-date").val();
+        var endDate = $("#end-date").val();
+        var destination = $("#destination").val().trim();
+        var interests = [];
+        $("#interests option:selected").each(function (i, selectedElement) {
+            interests[i] = $(selectedElement).val();
+        });
+        var budget = $("#budget").val().trim();
+        var accommodations = [];
+        $("#accommodations option:selected").each(function (i, selectedElement) {
+            accommodations[i] = $(selectedElement).val();
+        });
+        var travelMode = $("input[name='travel-mode']:checked").val();
+
+        // Creates local "temporary" object for holding new train data
+        var newUser = {
+            startDate: startDate,
+            endDate: endDate,
+            destination: destination,
+            interests: interests,
+            budget: budget,
+            accommodations: accommodations,
+            travelMode: travelMode
+        };
+
+        // Push to database
+        database.ref().push(newUser);
+    });
+
 })
