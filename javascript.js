@@ -93,10 +93,6 @@ $(document).ready(function () {
             database.ref().push(newUser);
              
         });
-
-       
-
-     
           
     //  Complete Travel Survey
 
