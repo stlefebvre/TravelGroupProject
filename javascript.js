@@ -32,7 +32,7 @@ $(document).ready(function () {
                     console.log(error.message);
                 });
             };
-        });
+      
         //=============================================================================================  
         // New user account
         $("#create-account").on("click", function (event) {
@@ -122,4 +122,4 @@ $(document).ready(function () {
         // Push to database
         database.ref().push(newUser);
     });
-
+});
