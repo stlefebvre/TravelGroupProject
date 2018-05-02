@@ -122,6 +122,4 @@ $(document).ready(function () {
         // Push to database
         database.ref().push(newUser);
     });
-})
-});
 
