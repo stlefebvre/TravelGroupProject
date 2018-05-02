@@ -10,6 +10,8 @@ $(document).ready(function () {
             };
             firebase.initializeApp(config);
 
+            var database = firebase.database();
+            var auth = firebase.auth();
 
             //API variables
             var yelpAPIKey = "qusAduy05LdRpxfqStriSQS46iXpHS1hb_RHHF2HSqlGX5Xw6OMMZqlEkO4C_vb-BlUPl2v-BuP-gy6ek6kXrXCV8LpdQMLaY0wOkC3pFqCjz291AcMEf6hXHVfiWnYx"
@@ -18,9 +20,7 @@ $(document).ready(function () {
             var yelpURL = "https://api.yelp.com/v3/businesses/search"
 
             var googleMapAPIKey = "AIzaSyBztLFObJ_vMG1zhWlzys8DWeiONElq2EI"
-
-            var auth = firebase.auth();
-
+           
             function loginToFirebase() {
                 var email = $("#user-email").val();
                 var password = $("#password").val();
@@ -66,21 +66,34 @@ $(document).ready(function () {
 
             // Push to database
             database.ref().push(newUser);
-            function isUserSignedIn() {
-                auth.onAuthStateChanged(function (user) {
-                    if (user) {
+             
+        });
 
-                        window.location.href = "home.html";
-                        console.log("User is signed in.")
-                    } else {
-                        console.log("No user is signed in.")
-                    }
-                });
-            };
+        function isUserSignedIn() {
+            auth.onAuthStateChanged(function (user) {
+                if (user) {
 
-            $("body").on("click", "#btnLogin", loginToFirebase).on("click", "#start", function() {
-                window.location.href = "newTrip.html";
+                    window.location.href = "home.html";
+                    console.log("User is signed in.")
+                } else {
+                    console.log("No user is signed in.")
+                }
             });
+        };
+
+        function onPageLoad () {
+            $("#new-account").hide();
+        };
+
+        $("#sign-up-link").on("click", function() {
+            $("#new-account").show();
+            $("#sign-in-container").hide();
+        });
+
+        $("body").on("click", "#sign-in", loginToFirebase)
+        
+        $("div").on("click", "#start", function() {
+            window.location.href = "newTrip.html";
         });
           
     //  Complete Travel Survey
@@ -122,4 +135,6 @@ $(document).ready(function () {
         // Push to database
         database.ref().push(newUser);
     });
+
+    onPageLoad()
 });
