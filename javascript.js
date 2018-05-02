@@ -47,7 +47,7 @@ $(document).ready(function () {
 
             function logout () {
                 auth.signOut().then(function() {
-                    // Sign-out successful.
+                    window.location.href = "home.html";
                   }).catch(function(error) {
                     // An error happened.
                   });
