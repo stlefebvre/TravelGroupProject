@@ -21,7 +21,7 @@ $(document).ready(function () {
 
             var googleMapAPIKey = "AIzaSyBztLFObJ_vMG1zhWlzys8DWeiONElq2EI"
            
-            function loginToFirebase() {
+            function login () {
                 var email = $("#email").val();
                 var password = $("#password").val();
     
