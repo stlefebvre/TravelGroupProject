@@ -33,6 +33,30 @@ $(document).ready(function () {
                     console.log(error.message);
                 });
             };
+            function isUserSignedIn() {
+                auth.onAuthStateChanged(function (user) {
+                    if (user) {
+    
+                        window.location.href = "home.html";
+                        console.log("User is signed in.")
+                    } else {
+                        console.log("No user is signed in.")
+                    }
+                });
+            };
+
+            function logout () {
+                auth.signOut().then(function() {
+                    // Sign-out successful.
+                  }).catch(function(error) {
+                    // An error happened.
+                  });
+
+            }
+    
+            function onPageLoad () {
+                $("#new-account").hide();
+            };
       
         //=============================================================================================  
         // New user account
@@ -70,32 +94,9 @@ $(document).ready(function () {
              
         });
 
-        function isUserSignedIn() {
-            auth.onAuthStateChanged(function (user) {
-                if (user) {
+       
 
-                    window.location.href = "home.html";
-                    console.log("User is signed in.")
-                } else {
-                    console.log("No user is signed in.")
-                }
-            });
-        };
-
-        function onPageLoad () {
-            $("#new-account").hide();
-        };
-
-        $("#sign-up-link").on("click", function() {
-            $("#new-account").show();
-            $("#sign-in-container").hide();
-        });
-
-        $("body").on("click", "#sign-in", loginToFirebase)
-        
-        $("div").on("click", "#start", function() {
-            window.location.href = "newTrip.html";
-        });
+     
           
     //  Complete Travel Survey
 
@@ -137,5 +138,13 @@ $(document).ready(function () {
         database.ref().push(newUser);
     });
 
+    $("body").on("click", "#sign-in", login).on("click", "#logout", logout)
+    $("#sign-up-link").on("click", function() {
+        $("#new-account").show();
+        $("#sign-in-container").hide();
+    }); 
+    $("div").on("click", "#start", function() {
+        window.location.href = "newTrip.html";
+    });
     onPageLoad()
 });
