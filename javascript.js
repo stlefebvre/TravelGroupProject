@@ -66,13 +66,11 @@ $(document).ready(function () {
 
             // Push to database
             database.ref().push(newUser);
-
-
             function isUserSignedIn() {
                 auth.onAuthStateChanged(function (user) {
                     if (user) {
 
-                        window.location.href = "newTrip.html";
+                        window.location.href = "home.html";
                         console.log("User is signed in.")
                     } else {
                         console.log("No user is signed in.")
@@ -80,9 +78,13 @@ $(document).ready(function () {
                 });
             };
 
-            $("body").on("click", "#btnLogin", loginToFirebase);
+            $("body").on("click", "#btnLogin", loginToFirebase).on("click", "#start", function() {
+                window.location.href = "newTrip.html";
+            });
+        });
           
     //  Complete Travel Survey
+
     $("#start-journey").on("click", function (event) {
         // prevent page from refreshing when form tries to submit itself
         event.preventDefault();
@@ -120,7 +122,6 @@ $(document).ready(function () {
         // Push to database
         database.ref().push(newUser);
     });
-
 })
-        });
+});
 
