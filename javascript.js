@@ -39,6 +39,7 @@ $(document).ready(function () {
         event.preventDefault();
 
         // Capture user inputs and store them into variables
+        var tripName = $("#trip-name").val().trim();
         var firstName = $("#first-name").val().trim();
         var lastName = $("#last-name").val().trim();
         var email = $("#user-email").val().trim();
@@ -55,6 +56,7 @@ $(document).ready(function () {
 
         // Creates local "temporary" object for holding new train data
         var newUser = {
+            tripName: tripName,
             firstName: firstName,
             lastName: lastName,
             email: email,
