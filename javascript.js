@@ -79,6 +79,6 @@ $(document).ready(function () {
             };
 
             $("body").on("click", "#btnLogin", loginToFirebase).on("click", "#start", function() {
-                window.location.href = "newtrip.html";
+                window.location.href = "newTrip.html";
             });
         });
