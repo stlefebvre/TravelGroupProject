@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Start Your Journey</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+    <!-- external styling -->
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <!-- jQuery library CDN -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Firebase reference-->
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <!-- Moment.js -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <!-- link to external javascript -->
+    <script src="./assets/javascript/javascript.js"></script>
+</head>
+
+<body>
+
+    <header class="row headerRowCSS">
+        <div class="container" id="headerContainer">
+
+            <div class="navbar navbar-expand-lg flex-column flex-md-row" id="navbarCSS">
+                <a class="navbar-brand nav-left col-md-3 col-sm-12 col-xs-12" id="siteTitle" href="#">Travel Site!!!</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse col-md-auto col-sm-12 col-xs-12 justify-content-end nav-right" id="navbarSupportedContent">
+                    <ul class="navbar-nav" id="navButtons">
+                        <li class="nav-item nav-button" id="nav-button-Home">
+                            <a class="nav-link nav-button-link" href="#">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item nav-button">
+                            <a class="nav-link nav-button-link" href="#">New Trip
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown nav-button">
+                            <a class="nav-link dropdown-toggle nav-button-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                Your Trips
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Trip 1</a>
+                                <a class="dropdown-item" href="#">Trip 2</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Trip 3</a>
+                            </div>
+                        </li>
+                        <li class="nav-item nav-button">
+                            <a class="nav-link nav-button-link" href="#">Profile</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"></div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="heading">
+                            <h4>Start Your Journey</h4>
+                        </div>
+                        <form id="create-account-form">
+                            <div class="form-group">
+                                <label for="trip-name" class="form-label">Give your trip a name:</label>
+                                <br/>
+                                <input type="text" class="form-control" name="trip-name" id="trip-name" autofocus spellcheck="true">
+                            </div>
+                            <div class="form-group">
+                                <label id="travel-dates" for="travel-dates" class="form-label">When are you traveling?</label>
+                                <br/>
+                                <label for="start-date" class="form-label">Start date:</label>
+                                <input type="date" class="form-control" id="start-date">
+                            </div>
+                            <div class="form-group">
+                                <label for="end-date" class="form-label">End date:</label>
+                                <input type="date" class="form-control" id="end-date">
+                            </div>
+                            <div class="form-group">
+                                <label for="destination" class="form-label">Where are you going?</label>
+                                <br/>
+                                <label for="destination" class="form-label">City</label>
+                                <input type="text" class="form-control" name="destination" id="destination" spellcheck="true">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputState">State</label>
+                                <select id="inputState" class="form-control input-medium bfh-states" data-country="US">
+                                    <option selected>Choose...</option>
+                                    <option>...</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="interests">What interests do you have?</label>
+                                <select multiple class="form-control" id="interests">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="budget" class="form-label">What is your budget?</label>
+                                <input type="text" class="form-control currency-input" name="budget" id="budget" autofocus spellcheck="true">
+                            </div>
+                            <div class="form-group">
+                                <label for="accommodation">What type of accommodation do you prefer?</label>
+                                <select multiple class="form-control" id="accommodations">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="travel">How will you be traveling?</label>
+                                <br/>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="travel-mode" id="radio1" value="fly">
+                                    <label class="form-check-label" for="radio1">Fly</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="travel-mode" id="radio2" value="railway">
+                                    <label class="form-check-label" for="radio2">Railway</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="travel-mode" id="radio3" value="drive">
+                                    <label class="form-check-label" for="radio3">Drive</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-secondary" id="start-journey">
+                                    Submit
+                                </button>
+                            </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"></div>
+    </div>
+    </div>
+</body>
+
+</html>
