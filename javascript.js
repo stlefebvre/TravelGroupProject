@@ -74,7 +74,7 @@ $(document).ready(function () {
 
             var promise = auth.createUserWithEmailAndPassword(email, password)
             console.log(promise)
-            
+            login ();
             promise.catch(function (error) {
                 console.log(error.code);
                 console.log(error.message);
