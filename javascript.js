@@ -101,10 +101,10 @@ $(document).ready(function () {
         // prevent page from refreshing when form tries to submit itself
         event.preventDefault();
         // Capture user inputs and store them into variables
+        var tripName = $("#trip-name").val().trim();
         var myCity = $("#my-city").val().trim();
         var myState = $("#my-state").val().trim();
         var startPoint = myCity + " " + myState;
-        var tripName = $("#trip-name").val().trim();
         var startDate = $("#start-date").val();
         var endDate = $("#end-date").val();
         var destinationCity = $("#destination-city").val().trim();
@@ -123,8 +123,8 @@ $(document).ready(function () {
 
         // Creates local "temporary" object for holding new train data
         var newUser = {
-            startPoint: startPoint,
             tripName: tripName,
+            startPoint: startPoint,
             startDate: startDate,
             endDate: endDate,
             destinationCity: destinationCity,
@@ -143,6 +143,8 @@ $(document).ready(function () {
     $("#sign-up-link").on("click", function () {
         $("#new-account").show();
         $("#sign-in-container").hide();
+    }).on("click", "start-journey", function () {
+        window.location.href = "itinerary-template.html"
     });
     $("div").on("click", "#start", function () {
         window.location.href = "newTrip.html";
@@ -152,7 +154,6 @@ $(document).ready(function () {
     function clearForm() {
         $(".form-control").val("");
         $(".password").val("");
-    }
-
+    };
     onPageLoad()
 });
