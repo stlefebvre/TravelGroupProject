@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,7 +34,12 @@
                 <div class="collapse navbar-collapse col-md-auto col-sm-12 col-xs-12 justify-content-end nav-right" id="navbarSupportedContent">
                     <ul class="navbar-nav" id="navButtons">
                         <li class="nav-item nav-button" id="nav-button-Home">
-                            <a class="nav-link nav-button-link" href="home.html">Home
+                            <a class="nav-link nav-button-link" href="#">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item nav-button">
+                            <a class="nav-link nav-button-link" href="#">New Trip
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
@@ -52,12 +58,6 @@
                         <li class="nav-item nav-button">
                             <a class="nav-link nav-button-link" href="#">Profile</a>
                         </li>
-
-                        <li class="nav-item nav-button">
-                            <a class="nav-link nav-button-link" href="#" id="logout">Logout
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -74,55 +74,150 @@
                         </div>
                         <form id="create-account-form">
                             <div class="form-group">
-                                <label for="trip-name" class="form-label">Give your trip a name:</label>
+                                <label for="" class="form-label">Where do you live?</label>
                                 <br/>
-                                <input type="text" class="form-control" name="trip-name" id="trip-name" autofocus spellcheck="true">
+                                <label for="my-city" class="form-label">City</label>
+                                <input type="text" class="form-control" name="my-city" id="my-city" autofocus required>
+                            </div>
+                            <div class="form-group">
+                                <label for="my-state">State</label>
+                                <select id="my-state" class="form-control input-medium bfh-states" data-country="US" required>
+                                    <option value="AL">Alabama</option>
+                                    <option value="AK">Alaska</option>
+                                    <option value="AZ">Arizona</option>
+                                    <option value="AR">Arkansas</option>
+                                    <option value="CA">California</option>
+                                    <option value="CO">Colorado</option>
+                                    <option value="CT">Connecticut</option>
+                                    <option value="DE">Delaware</option>
+                                    <option value="DC">District Of Columbia</option>
+                                    <option value="FL">Florida</option>
+                                    <option value="GA">Georgia</option>
+                                    <option value="HI">Hawaii</option>
+                                    <option value="ID">Idaho</option>
+                                    <option value="IL">Illinois</option>
+                                    <option value="IN">Indiana</option>
+                                    <option value="IA">Iowa</option>
+                                    <option value="KS">Kansas</option>
+                                    <option value="KY">Kentucky</option>
+                                    <option value="LA">Louisiana</option>
+                                    <option value="ME">Maine</option>
+                                    <option value="MD">Maryland</option>
+                                    <option value="MA">Massachusetts</option>
+                                    <option value="MI">Michigan</option>
+                                    <option value="MN">Minnesota</option>
+                                    <option value="MS">Mississippi</option>
+                                    <option value="MO">Missouri</option>
+                                    <option value="MT">Montana</option>
+                                    <option value="NE">Nebraska</option>
+                                    <option value="NV">Nevada</option>
+                                    <option value="NH">New Hampshire</option>
+                                    <option value="NJ">New Jersey</option>
+                                    <option value="NM">New Mexico</option>
+                                    <option value="NY">New York</option>
+                                    <option value="NC">North Carolina</option>
+                                    <option value="ND">North Dakota</option>
+                                    <option value="OH">Ohio</option>
+                                    <option value="OK">Oklahoma</option>
+                                    <option value="OR">Oregon</option>
+                                    <option value="PA">Pennsylvania</option>
+                                    <option value="RI">Rhode Island</option>
+                                    <option value="SC">South Carolina</option>
+                                    <option value="SD">South Dakota</option>
+                                    <option value="TN">Tennessee</option>
+                                    <option value="TX">Texas</option>
+                                    <option value="UT">Utah</option>
+                                    <option value="VT">Vermont</option>
+                                    <option value="VA">Virginia</option>
+                                    <option value="WA">Washington</option>
+                                    <option value="WV">West Virginia</option>
+                                    <option value="WI">Wisconsin</option>
+                                    <option value="WY">Wyoming</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label id="travel-dates" for="travel-dates" class="form-label">When are you traveling?</label>
                                 <br/>
                                 <label for="start-date" class="form-label">Start date:</label>
-                                <input type="date" class="form-control" id="start-date">
+                                <input type="date" class="form-control" id="start-date" required>
                             </div>
                             <div class="form-group">
                                 <label for="end-date" class="form-label">End date:</label>
-                                <input type="date" class="form-control" id="end-date">
+                                <input type="date" class="form-control" id="end-date" required>
                             </div>
                             <div class="form-group">
-                                <label for="destination" class="form-label">Where are you going?</label>
+                                <label for="destination-city" class="form-label">Where are you going?</label>
                                 <br/>
                                 <label for="destination" class="form-label">City</label>
-                                <input type="text" class="form-control" name="destination" id="destination" spellcheck="true">
+                                <input type="text" class="form-control" name="destination-city" id="destination-city" required>
                             </div>
                             <div class="form-group">
-                                <label for="inputState">State</label>
-                                <select id="inputState" class="form-control input-medium bfh-states" data-country="US">
-                                    <option selected>Choose...</option>
-                                    <option>...</option>
+                                <label for="destination-state">State</label>
+                                <select id="destination-state" class="form-control input-medium bfh-states" data-country="US" required>
+                                    <option value="AL">Alabama</option>
+                                    <option value="AK">Alaska</option>
+                                    <option value="AZ">Arizona</option>
+                                    <option value="AR">Arkansas</option>
+                                    <option value="CA">California</option>
+                                    <option value="CO">Colorado</option>
+                                    <option value="CT">Connecticut</option>
+                                    <option value="DE">Delaware</option>
+                                    <option value="DC">District Of Columbia</option>
+                                    <option value="FL">Florida</option>
+                                    <option value="GA">Georgia</option>
+                                    <option value="HI">Hawaii</option>
+                                    <option value="ID">Idaho</option>
+                                    <option value="IL">Illinois</option>
+                                    <option value="IN">Indiana</option>
+                                    <option value="IA">Iowa</option>
+                                    <option value="KS">Kansas</option>
+                                    <option value="KY">Kentucky</option>
+                                    <option value="LA">Louisiana</option>
+                                    <option value="ME">Maine</option>
+                                    <option value="MD">Maryland</option>
+                                    <option value="MA">Massachusetts</option>
+                                    <option value="MI">Michigan</option>
+                                    <option value="MN">Minnesota</option>
+                                    <option value="MS">Mississippi</option>
+                                    <option value="MO">Missouri</option>
+                                    <option value="MT">Montana</option>
+                                    <option value="NE">Nebraska</option>
+                                    <option value="NV">Nevada</option>
+                                    <option value="NH">New Hampshire</option>
+                                    <option value="NJ">New Jersey</option>
+                                    <option value="NM">New Mexico</option>
+                                    <option value="NY">New York</option>
+                                    <option value="NC">North Carolina</option>
+                                    <option value="ND">North Dakota</option>
+                                    <option value="OH">Ohio</option>
+                                    <option value="OK">Oklahoma</option>
+                                    <option value="OR">Oregon</option>
+                                    <option value="PA">Pennsylvania</option>
+                                    <option value="RI">Rhode Island</option>
+                                    <option value="SC">South Carolina</option>
+                                    <option value="SD">South Dakota</option>
+                                    <option value="TN">Tennessee</option>
+                                    <option value="TX">Texas</option>
+                                    <option value="UT">Utah</option>
+                                    <option value="VT">Vermont</option>
+                                    <option value="VA">Virginia</option>
+                                    <option value="WA">Washington</option>
+                                    <option value="WV">West Virginia</option>
+                                    <option value="WI">Wisconsin</option>
+                                    <option value="WY">Wyoming</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="interests">What interests do you have?</label>
-                                <select multiple class="form-control" id="interests">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
+                                <label for="interests">Enter up to 5 interests (seperated by comma)</label>
+                                <input type="text" class="form-control" name="interests" id="interests" required>
                             </div>
                             <div class="form-group">
                                 <label for="budget" class="form-label">What is your budget?</label>
-                                <input type="text" class="form-control currency-input" name="budget" id="budget" autofocus spellcheck="true">
-                            </div>
-                            <div class="form-group">
-                                <label for="accommodation">What type of accommodation do you prefer?</label>
-                                <select multiple class="form-control" id="accommodations">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
+                                <select class="form-control" name="budget" id="budget" required>
+                                    <option value="$">$</option>
+                                    <option value="$$">$$</option>
+                                    <option value="$$$">$$$</option>
+                                    <option value="$$$$">$$$$</option>
                                 </select>
                             </div>
                             <div class="form-group">

@@ -93,7 +93,8 @@ $(document).ready(function () {
             var password = $("#pass-word").val().trim();
             var confirmPassword = $("#confirm-password").val().trim();
 
-            console.log(email)
+            //clear form
+            clearForm();
 
             var promise = auth.createUserWithEmailAndPassword(email, password)
             console.log(promise)
@@ -123,17 +124,16 @@ $(document).ready(function () {
         // prevent page from refreshing when form tries to submit itself
         event.preventDefault();
         // Capture user inputs and store them into variables
-        //var startDate = $("#start-date").val();
-        //var startDateMoment = moment(startDate);
-        //var startDateMoment = moment($("#start-date").val());
+        var myCity = $("#my-city").val().trim();
+        var myState = $("#my-state").val().trim();
+        var startPoint = myCity + " " +  myState;
         var tripName = $("#trip-name").val().trim();
         var startDate = $("#start-date").val();
         var endDate = $("#end-date").val();
-        var destination = $("#destination").val().trim();
-        var interests = [];
-        $("#interests option:selected").each(function (i, selectedElement) {
-            interests[i] = $(selectedElement).val();
-        });
+        var destinationCity = $("#destination-city").val().trim();
+        var destinationState = $("#destination-state").val().trim();
+        var interests = $("#interests").val().trim();
+        var interestsArray = interests.split(",");
         var budget = $("#budget").val().trim();
         var accommodations = [];
         $("#accommodations option:selected").each(function (i, selectedElement) {
@@ -141,13 +141,18 @@ $(document).ready(function () {
         });
         var travelMode = $("input[name='travel-mode']:checked").val();
 
+        //clear form
+        clearForm();
+
         // Creates local "temporary" object for holding new train data
         var newUser = {
+            startPoint: startPoint,
             tripName: tripName,
             startDate: startDate,
             endDate: endDate,
-            destination: destination,
-            interests: interests,
+            destinationCity: destinationCity,
+            destinationState: destinationState,
+            interestsArray: interestsArray,
             budget: budget,
             accommodations: accommodations,
             travelMode: travelMode
@@ -165,5 +170,27 @@ $(document).ready(function () {
     $("div").on("click", "#start", function() {
         window.location.href = "newTrip.html";
     });
+
+    $("#create-account-link").on("click", function () {
+        // prevent page from refreshing when form tries to submit itself
+        event.preventDefault();
+        $("#new-account").show();
+        $("#first-name").focus();
+        $("#sign-in").hide();
+      });
+    
+      $("#sign-in-link").on("click", function () {
+        // prevent page from refreshing when form tries to submit itself
+        event.preventDefault();
+        $("#new-account").hide();
+        $("#sign-in").show();
+      });
+    
+        // Function to clear user input fields
+        function clearForm() {
+          $(".form-control").val("");
+          $(".password").val("");
+        }
+
     onPageLoad()
 });

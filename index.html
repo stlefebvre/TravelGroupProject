@@ -21,29 +21,70 @@
 </head>
 
 <body>
+    <header class="row headerRowCSS">
+        <div class="container" id="headerContainer">
+            <div class="navbar navbar-expand-lg flex-column flex-md-row" id="navbarCSS">
+                <a class="navbar-brand nav-left col-md-3 col-sm-12 col-xs-12" id="siteTitle" href="#">Travel Site!!!</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse col-md-auto col-sm-12 col-xs-12 justify-content-end nav-right" id="navbarSupportedContent">
+                    <ul class="navbar-nav" id="navButtons">
+                        <li class="nav-item nav-button" id="nav-button-Home">
+                            <a class="nav-link nav-button-link" href="#">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item nav-button">
+                            <a class="nav-link nav-button-link" href="#">New Trip
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown nav-button">
+                            <a class="nav-link dropdown-toggle nav-button-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                Your Trips
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Trip 1</a>
+                                <a class="dropdown-item" href="#">Trip 2</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Trip 3</a>
+                            </div>
+                        </li>
+                        <li class="nav-item nav-button">
+                            <a class="nav-link nav-button-link" href="#">Profile</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
     <div id="container">
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"></div>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="card" id="sign-in-container">
-                    <div class="card-body" >
+                <div class="card" id="sign-in">
+                    <div class="card-body">
                         <div class="heading">
                             <h4>Sign In</h4>
                             <div class="sign-up-link-container">
                                 <div>
                                     New User?
-                                    <a id="sign-up-link" href="#">Create Account</a>
+                                    <a id="create-account-link" href="">Create Account</a>
                                 </div>
                             </div>
                         </div>
+                        <form id="sign-in-form">
                             <div class="form-group">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" name="email" id="email" autofocus spellcheck="true">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" autofocus required>
                             </div>
                             <div class="form-group">
                                 <label for="password" class="form-label">Password</label>
                                 <br>
-                                <input type="password" name="password" id="password">
+                                <input type="password" name="password" id="password" required>
                             </div>
                             <div class="form-group">
                                 <input type="checkbox" id="remember-me-checkbox" checked>
@@ -52,15 +93,14 @@
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-secondary" id="sign-in">
-                                Sign In                               
-                             </button>
+                                    Sign In
+                                </button>
                             </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-
-        <br> <br>
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"></div>
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"></div>
@@ -72,18 +112,18 @@
                             <div class="sign-up-link-container">
                                 <div>
                                     Already have an account?
-                                    <a id="sign-up-link" href="">Sign in</a>
+                                    <a id="sign-in-link" href="">Sign in</a>
                                 </div>
                             </div>
                         </div>
                         <form id="create-account-form">
                             <div class="form-group">
                                 <label for="first-name" class="form-label">First Name</label>
-                                <input type="text" class="form-control" name="first-name" id="first-name" autofocus spellcheck="true" required>
+                                <input type="text" class="form-control" name="first-name" id="first-name" autofocus required>
                             </div>
                             <div class="form-group">
                                 <label for="last-name" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" name="last-name" id="last-name" spellcheck="true" required>
+                                <input type="text" class="form-control" name="last-name" id="last-name" required>
                             </div>
                             <div class="form-group">
                                 <label for="user-email" class="form-label">Email</label>
@@ -91,17 +131,18 @@
                             </div>
                             <div class="form-group">
                                 <label for="phone-number" class="form-label">Phone Number</label>
-                                <input type="text" class="form-control" name="phone-number" id="phone-number" required>
+                                <input type="tel" placeholder="(xxx)-xxx-xxxx" pattern="[0-9]{3}" class="form-control" name="phone-number" id="phone-number"
+                                    required>
                             </div>
                             <div class="form-group">
                                 <label for="pass-word" class="form-label">Password</label>
                                 <br>
-                                <input type="password" name="pass-word" id="pass-word" required>
+                                <input type="password" class="form-control" name="pass-word" id="pass-word" required>
                             </div>
                             <div class="form-group">
                                 <label for="confirm-password" class="form-label">Confirm Password</label>
                                 <br>
-                                <input type="password" name="confirm-password" id="confirm-password" required>
+                                <input type="password" class="form-control" name="confirm-password" id="confirm-password" required>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-secondary" id="create-account">
@@ -117,4 +158,5 @@
     </div>
 
 </body>
+
 </html>
