@@ -20,6 +20,8 @@ $(document).ready(function () {
     var yelpURL = "https://api.yelp.com/v3/businesses/search"
 
     var googleMapAPIKey = "AIzaSyBztLFObJ_vMG1zhWlzys8DWeiONElq2EI"
+
+    
     //login to Firebase
     function login() {
         var email = $("#email").val();
@@ -70,8 +72,7 @@ $(document).ready(function () {
         var phoneNumber = $("#phone-number").val().trim();
         var password = $("#pass-word").val().trim();
 
-        //clear form
-        clearForm();
+     
 
         var promise = auth.createUserWithEmailAndPassword(email, password)
         console.log(promise)
@@ -91,7 +92,10 @@ $(document).ready(function () {
         };
 
         // Push to database
-        database.ref().push(newUser);
+        database.ref().set(newUser);
+
+           //clear form
+           clearForm();
 
     });
 
@@ -118,8 +122,6 @@ $(document).ready(function () {
         });
         var travelMode = $("input[name='travel-mode']:checked").val();
 
-        //clear form
-        clearForm();
 
         // Creates local "temporary" object for holding new train data
         var newUser = {
@@ -137,17 +139,22 @@ $(document).ready(function () {
 
         // Push to database
         database.ref().push(newUser);
+
+        //navigate to Itinerary page
+        window.location.href = "itinerary-template.html";
+
+        //clear form
+        clearForm();
     });
 
-    $("body").on("click", "#sign-in", login).on("click", "#logout", logout)
-    $("#sign-up-link").on("click", function () {
+    //click functions for login/logout and navigation
+    $("body").on("click", "#sign-in", login).on("click", "#logout", logout).on("click", "#nav-button-Home", function () {
+        window.location.href = "home.html";
+    }).on("click", "#start", function () {
+        window.location.href = "newTrip.html";
+    }).on("click", "#sign-up-link", function () {
         $("#new-account").show();
         $("#sign-in-container").hide();
-    }).on("click", "start-journey", function () {
-        window.location.href = "itinerary-template.html"
-    });
-    $("div").on("click", "#start", function () {
-        window.location.href = "newTrip.html";
     });
 
     // Function to clear user input fields

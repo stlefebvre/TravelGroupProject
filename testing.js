@@ -112,25 +112,22 @@ $(document).ready(function () {
     // <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
 
     // Initialize Firebase (Jashan's Database) - Jashan did not have access to Shelby's database so tested with his own database
-    var config = {
-        apiKey: "AIzaSyCti60q3uLnJgcfWkwZJWrgQ70sl4nbfdI",
-        authDomain: "project-1-testing-firebase.firebaseapp.com",
-        databaseURL: "https://project-1-testing-firebase.firebaseio.com",
-        projectId: "project-1-testing-firebase",
-        storageBucket: "",
-        messagingSenderId: "892990754992"
-    };
-    firebase.initializeApp(config);
-
+    // var config = {
+    //     apiKey: "AIzaSyD4_Txdc3EIf5gFvynL2TB4wvy4u-7szYg",
+    //     authDomain: "grouptravelproject-2eaf6.firebaseapp.com",
+    //     databaseURL: "https://grouptravelproject-2eaf6.firebaseio.com",
+    //     projectId: "grouptravelproject-2eaf6",
+    //     storageBucket: "grouptravelproject-2eaf6.appspot.com",
+    //     messagingSenderId: "433773464016"
+    // };
+    // firebase.initializeApp(config);
     var database = firebase.database();
 
     var packingList = ["Shirts", "Passport", "Book"];
 
-    database.ref().set({
+    database.ref().update({
         packingList: packingList,
     });
-
-
 
     function putOnPage(tempArray) {
 
@@ -167,7 +164,7 @@ $(document).ready(function () {
 
         tempArray.push(val);
         console.log(tempArray);
-        database.ref().set({
+        database.ref().update({
             packingList: tempArray,
         });
 
@@ -211,7 +208,7 @@ $(document).ready(function () {
 
         console.log("TempArray after splice " + tempArray);
 
-        database.ref().set({
+        database.ref().update({
             packingList: tempArray,
         });
 
