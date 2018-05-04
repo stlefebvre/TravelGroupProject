@@ -25,21 +25,20 @@
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"></div>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="card" id="sign-in">
-                    <div class="card-body">
+                <div class="card" id="sign-in-container">
+                    <div class="card-body" >
                         <div class="heading">
                             <h4>Sign In</h4>
                             <div class="sign-up-link-container">
                                 <div>
                                     New User?
-                                    <a id="create-account-link" href="">Create Account</a>
+                                    <a id="sign-up-link" href="#">Create Account</a>
                                 </div>
                             </div>
                         </div>
-                        <form id="sign-in-form">
                             <div class="form-group">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" autofocus required>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" autofocus spellcheck="true" required>
                             </div>
                             <div class="form-group">
                                 <label for="password" class="form-label">Password</label>
@@ -49,18 +48,18 @@
                             <div class="form-group">
                                 <input type="checkbox" id="remember-me-checkbox" checked>
                                 <label for="remember-me-checkbox" tabindex="-1">Remember Me</label>
-                                <a class="trouble-signing-in-link" href="">Trouble Signing In</a>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-secondary" id="sign-in">
-                                    Sign In
-                                </button>
+                                Sign In                               
+                             </button>
                             </div>
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
+
+        <br> <br>
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"></div>
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"></div>
@@ -72,18 +71,18 @@
                             <div class="sign-up-link-container">
                                 <div>
                                     Already have an account?
-                                    <a id="sign-in-link" href="">Sign in</a>
+                                    <a id="sign-up-link" href="">Sign in</a>
                                 </div>
                             </div>
                         </div>
                         <form id="create-account-form">
                             <div class="form-group">
                                 <label for="first-name" class="form-label">First Name</label>
-                                <input type="text" class="form-control" name="first-name" id="first-name" autofocus required>
+                                <input type="text" class="form-control" name="first-name" id="first-name" autofocus spellcheck="true" required>
                             </div>
                             <div class="form-group">
                                 <label for="last-name" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" name="last-name" id="last-name" required>
+                                <input type="text" class="form-control" name="last-name" id="last-name" spellcheck="true" required>
                             </div>
                             <div class="form-group">
                                 <label for="user-email" class="form-label">Email</label>
@@ -91,18 +90,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="phone-number" class="form-label">Phone Number</label>
-                                <input type="tel" placeholder="(xxx)-xxx-xxxx" pattern="[0-9]{3}" class="form-control" name="phone-number" id="phone-number"
-                                    required>
+                                <input type="tel" placeholder="(xxx)-xxx-xxxx" pattern="[0-9]{3}" class="form-control" name="phone-number" id="phone-number" required>
                             </div>
                             <div class="form-group">
                                 <label for="pass-word" class="form-label">Password</label>
                                 <br>
-                                <input type="password" class="form-control" name="pass-word" id="pass-word" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="confirm-password" class="form-label">Confirm Password</label>
-                                <br>
-                                <input type="password" class="form-control" name="confirm-password" id="confirm-password" required>
+                                <input type="password" name="pass-word" id="pass-word" required>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-secondary" id="create-account">
@@ -118,5 +111,4 @@
     </div>
 
 </body>
-
 </html>
