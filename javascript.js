@@ -143,6 +143,8 @@ $(document).ready(function () {
     $("#sign-up-link").on("click", function () {
         $("#new-account").show();
         $("#sign-in-container").hide();
+    }).on("click", "start-journey", function () {
+        window.location.href = "itinerary-template.html"
     });
     $("div").on("click", "#start", function () {
         window.location.href = "newTrip.html";
@@ -152,7 +154,6 @@ $(document).ready(function () {
     function clearForm() {
         $(".form-control").val("");
         $(".password").val("");
-    }
-
+    };
     onPageLoad()
 });
