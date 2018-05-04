@@ -9,7 +9,7 @@ $(document).ready(function () {
                 messagingSenderId: "433773464016"
             };
             firebase.initializeApp(config);
-
+          //Firebase variables
             var database = firebase.database();
             var auth = firebase.auth();
 
@@ -20,11 +20,10 @@ $(document).ready(function () {
             var yelpURL = "https://api.yelp.com/v3/businesses/search"
 
             var googleMapAPIKey = "AIzaSyBztLFObJ_vMG1zhWlzys8DWeiONElq2EI"
-           
+           //login to Firebase
             function login () {
                 var email = $("#email").val();
                 var password = $("#password").val();
-    
                 var promise = auth.signInWithEmailAndPassword(email, password)
                 console.log(promise)
                 isUserSignedIn();
@@ -33,6 +32,7 @@ $(document).ready(function () {
                     console.log(error.message);
                 });
             };
+            //checking if user is signedin
             function isUserSignedIn() {
                 auth.onAuthStateChanged(function (user) {
                     if (user) {
@@ -65,7 +65,7 @@ $(document).ready(function () {
         //     });
         // };
     
-
+            //logout and redirect to login screen
             function logout () {
                 auth.signOut().then(function() {
                     window.location.href = "index.html";
@@ -74,7 +74,7 @@ $(document).ready(function () {
                   });
 
             }
-    
+            //hide the create account when the page loads
             function onPageLoad () {
                 $("#new-account").hide();
             };
@@ -170,21 +170,6 @@ $(document).ready(function () {
     $("div").on("click", "#start", function() {
         window.location.href = "newTrip.html";
     });
-
-    $("#create-account-link").on("click", function () {
-        // prevent page from refreshing when form tries to submit itself
-        event.preventDefault();
-        $("#new-account").show();
-        $("#first-name").focus();
-        $("#sign-in").hide();
-      });
-    
-      $("#sign-in-link").on("click", function () {
-        // prevent page from refreshing when form tries to submit itself
-        event.preventDefault();
-        $("#new-account").hide();
-        $("#sign-in").show();
-      });
     
         // Function to clear user input fields
         function clearForm() {
