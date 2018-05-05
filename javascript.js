@@ -166,15 +166,10 @@ $(document).ready(function () {
     var startPointGlobal = "";
     var endPointGlobal = "";
 
-
-
-
-
+//function for Google Maps
     function myMap() {
 
         var map = new google.maps.Map(document.getElementById('map'), {
-            // // center: startPointGlobal,
-            // zoom: 7
         });
 
         var directionsDisplay = new google.maps.DirectionsRenderer({
@@ -315,6 +310,76 @@ $(document).ready(function () {
         });
 
         putOnPage(tempArray);
+    });
+
+    //Yelp api
+
+    var term = $("#interests").val().trim();
+    var destCity = $("#destination-city").val();
+    var destState = $("#destination-state").val();
+
+    var location = destCity + ", " + destState;
+    console.log(location)
+    var url = "https://fast-ridge-58490.herokuapp.com/yelp/search?term=" + term + "&location=" + location + "&radius=16093&limit=10"
+    url += + $.param({
+        'price': ("#budget").val().trim()
+    })
+
+    //AJAX for hotels
+    var hotelSearch ={
+        "async": true,
+        "crossDomain": true,
+        "url": "https://fast-ridge-58490.herokuapp.com/yelp/search?term=hotel&location=" + location + "&radius=16093&limit=10",
+        "method": "GET"
+    }
+
+    $.ajax(businessSearch).done(function (response) {
+        console.log(response);
+        var businesses = response.businesses;
+        //List set outside of the function so that it can be called for multiple loops
+        var hotelList = $("<ul>")
+        
+            for (var i = 0; i < businesses.length; i++) {
+                var hotelListItem = $("<li>");
+                hotelListItem.append("<p> Hotel Name: " + businesses[i].name + "</p>");
+                hotelListItem.append("<p> Street: " + businesses[i].location.display_address[0] + "</p>");
+                hotelListItem.append("<p> City, State: " + businesses[i].location.display_address[1]+ "</p>");
+                hotelListItem.append("<p> Phone Number: " + businesses[i].phone + "</p>");
+                hotelListItem.append("<p> Web Address: " + businesses[i].url + "</p>");
+
+                hotelList.append(hotelListItem);
+                $("#hotels").append(hotelList)
+                    //build a div with id of hotels
+            }
+    });
+
+
+    //AJAX for things to do
+    var businessSearch = {
+        "async": true,
+        "crossDomain": true,
+        "url": url,
+        "method": "GET"
+    }
+    
+    $.ajax(businessSearch).done(function (response) {
+        console.log(response);
+        var businesses = response.businesses;
+        //List set outside of the function so that it can be called for multiple loops
+        var list = $("<ul>")
+        
+            for (var i = 0; i < businesses.length; i++) {
+                var listItem = $("<li>");
+                listItem.append("<p> Business Name: " + businesses[i].name + "</p>");
+                listItem.append("<p> Street: " + businesses[i].location.display_address[0] + "</p>");
+                listItem.append("<p> City, State: " + businesses[i].location.display_address[1]+ "</p>");
+                listItem.append("<p> Phone Number: " + businesses[i].phone + "</p>");
+                listItem.append("<p> Web Address: " + businesses[i].url + "</p>");
+
+                list.append(listItem);
+                $("#activities").append(list)
+                    //build a div with id of activities
+            };
     });
 
     onPageLoad()
