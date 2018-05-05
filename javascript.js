@@ -97,9 +97,9 @@ $(document).ready(function () {
         var startPoint = myCity + " " + myState;
         var startDate = $("#start-date").val();
         var endDate = $("#end-date").val();
-        var destinationCity = $("#destination-city").val().trim();
-        var destinationState = $("#destination-state").val().trim();
-        var endPoint = destinationCity + " " + destinationState;
+        var destCity = $("#destination-city").val().trim();
+        var destState = $("#destination-state").val().trim();
+        // var endPoint = destinationCity + " " + destinationState;
         var interests = $("#interests").val().trim();
         var interestsArray = interests.split(",");
         var budget = $("#budget").val().trim();
@@ -113,8 +113,9 @@ $(document).ready(function () {
             tripName: tripName,
             startPoint: startPoint,
             startDate: startDate,
-            endDate: endDate,
-            endPoint: endPoint,
+            destCity: endDate,
+            destState: destState,
+            destCity: destCity,
             interestsArray: interestsArray,
             budget: budget,
             accommodations: accommodations,
@@ -193,7 +194,9 @@ $(document).ready(function () {
     }
     database.ref().on("value", function (snapshot) {
         startPointGlobal = snapshot.val().startPoint;
-        endPointGlobal = snapshot.val().endPoint;
+        destCity = snapshot.val().destCity
+        destState = snapshot.val().destState;
+        endPointGlobal =  destCity + destState;
         myMap(startPointGlobal, endPointGlobal)
     });
 
@@ -283,16 +286,36 @@ $(document).ready(function () {
 
     //Yelp api
 
-    var term = $("#interests").val().trim();
-    var destCity = $("#destination-city").val();
-    var destState = $("#destination-state").val();
+    // var term = $("#interests").val().trim();
+    // var destCity = $("#destination-city").val();
+    // var destState = $("#destination-state").val();
 
-    var location = destCity + ", " + destState;
+    var term = "";
+    var destCity = "";
+    var destState = "";
+    var budget = "";
+   
+
+    database.ref().on("value", function (snapshot) {
+        term = snapshot.val().interestsArray;
+        destCity = snapshot.val().destCity;
+        destState = snapshot.val().destState;
+        budget = parseInt(snapshot.val().budget);
+        console.log(budget)
+        hotelSearch()
+    });
+    
+  
     console.log(location)
-    var url = "https://fast-ridge-58490.herokuapp.com/yelp/search?term=" + term + "&location=" + location + "&radius=16093&limit=10"
-    url += +$.param({
-        'price': ("#budget").val().trim()
-    })
+
+    function hotelSearch () {
+    var location = destCity + ", " + destState;
+    console.log(location + "where exists")
+    var url = "https://fast-ridge-58490.herokuapp.com/yelp/search?term=" + term + "&price=" + "&location=" + location + "&radius=16093&limit=10"
+    // url += +$.param({
+    //     'price': budget
+    // })
+    console.log(url + "when built")
 
     //AJAX for hotels
     var hotelSearch = {
@@ -302,7 +325,7 @@ $(document).ready(function () {
         "method": "GET"
     }
 
-    $.ajax(businessSearch).done(function (response) {
+    $.ajax(hotelSearch).done(function (response) {
         console.log(response);
         var businesses = response.businesses;
         //List set outside of the function so that it can be called for multiple loops
@@ -335,6 +358,7 @@ $(document).ready(function () {
         console.log(response);
         var businesses = response.businesses;
         //List set outside of the function so that it can be called for multiple loops
+        
         var list = $("<ul>")
 
         for (var i = 0; i < businesses.length; i++) {
@@ -350,6 +374,7 @@ $(document).ready(function () {
             //build a div with id of activities
         };
     });
+};
 
 
 });
