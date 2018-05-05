@@ -9,9 +9,6 @@
     <link href="https://fonts.googleapis.com/css?family=Gugi" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="reset.css">
     <link rel="stylesheet" type="text/css" media="screen" href="itinerary-style.css" />
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script> -->
-
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -20,43 +17,40 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <!-- Firebase Reference -->
-    <!-- <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script> -->
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
     <script src="javascript.js"></script>
 </head>
 
 <body>
-        <header class="row headerRowCSS">
-                <div class="container" id="headerContainer">
-                  <div class="navbar navbar-expand-lg flex-column flex-md-row" id="navbarCSS">
-                    <a class="navbar-brand nav-left col-md-3 col-sm-12 col-xs-12" id="siteTitle" href="#">Travel Site!!!</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                      aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse col-md-auto col-sm-12 col-xs-12 justify-content-end nav-right" id="navbarSupportedContent">
-                      <ul class="navbar-nav" id="navButtons">
+    <header class="row headerRowCSS">
+        <div class="container" id="headerContainer">
+            <div class="navbar navbar-expand-lg flex-column flex-md-row" id="navbarCSS">
+                <a class="navbar-brand nav-left col-md-3 col-sm-12 col-xs-12" id="siteTitle" href="#">Travel Site!!!</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse col-md-auto col-sm-12 col-xs-12 justify-content-end nav-right" id="navbarSupportedContent">
+                    <ul class="navbar-nav" id="navButtons">
                         <li class="nav-item nav-button" id="nav-button-Home">
-                          <a class="nav-link nav-button-link" href="#">Home
-                            <span class="sr-only">(current)</span>
-                          </a>
+                            <a class="nav-link nav-button-link" href="#">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
                         </li>
                         <li class="nav-item nav-button">
-                          <a class="nav-link nav-button-link" href="#" id="logout">Logout
-                              <span class="sr-only">(current)</span>
-                          </a>
-                      </li>
-                      </ul>
-                    </div>
-                  </div>
+                            <a class="nav-link nav-button-link" href="#" id="logout">Logout
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-              </header>
+            </div>
+        </div>
+    </header>
 
 
     <div class="container">
         <div class="row">
-            <!-- bd-sidebar -->
-            <!-- <div class="col-12 col-md-3 col-xl-2"> -->
             <nav class="nav flex-column col-md-2">
                 <p id="tripTasksHeader">Trip Checklist</p>
                 <a class="nav-link active tripTasks selectedTripTask" href="#">Trip Summary</a>
@@ -81,7 +75,6 @@
                             </div>
                             <input type="text">
                             <input type="submit" value="save" id="submit-item">
-                            <!-- <button class="btn btn-primary" id="submit-item" type="submit">Submit</button> -->
                         </form>
                         <div id="packing-list"></div>
                     </div>
@@ -98,110 +91,32 @@
                         </div>
 
                     </div>
-
-                    <!-- <div class="container-fluid">
-                        <div class="map-responsive">
-                            <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=Eiffel+Tower+Paris+France"
-                                width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-                        </div>
-                    </div> -->
                 </div>
             </div>
-            <!-- </div> -->
         </div>
     </div>
 
 
-    <!-- <script src="testing.js"></script> -->
-
     <script>
-        // src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"
-
-        // function myMap() {
-        //     var mapCanvas = $("map");
-        //     var mapOptions = {
-        //         center: new google.maps.LatLng(51.5, -0.2),
-        //         zoom: 10
-        //     };
-        //     var map = new google.maps.Map(mapCanvas, mapOptions);
-        // }
-
-
-        // "https://maps.googleapis.com/maps/api/js?key=AIzaSyBztLFObJ_vMG1zhWlzys8DWeiONElq2EI&callback=initMap"
-
-        // function myMap() {
-        //     var mapCanvas = document.getElementById("map");
-        //     var mapOptions = {
-        //         center: new google.maps.LatLng(51.5, -0.2),
-        //         zoom: 10
-        //     };
-        //     var map = new google.maps.Map(mapCanvas, mapOptions);
-        // }
-
-
-
         function ajaxMapsCall() {
 
             var googleMapAPIKey = "AIzaSyBztLFObJ_vMG1zhWlzys8DWeiONElq2EI";
             var callBack = "initMap";
             var googleMapQueryURL = "https://maps.googleapis.com/maps/api/js?key=" + googleMapAPIKey;
-            // var googleMapQueryURL = "https://maps.googleapis.com/maps/api/js?key=" + googleMapAPIKey + "&callback=" + callBack;
 
             function initMap() {
                 // Create a map object and specify the DOM element for display.
                 var map = new google.maps.Map(document.getElementById('map'), {
-                    center: { lat: -34.397, lng: 150.644 },
+                    center: {
+                        lat: -34.397,
+                        lng: 150.644
+                    },
                     zoom: 8
                 });
-            }
-
-            // $.ajax({
-            //     url: googleMapQueryURL,
-            //     method: "GET"
-            // }).then(function (response) {
-            //     console.log("In Ajax Call");
-            //     console.log(response);
-
-            // for (i = 0; i < response.results.length; i++) {
-            //     // triviaQuestions
-            //     var questionObject = {}
-            //     questionObject.questionNumber = difficulty + "_" + i;
-            //     questionObject.question = response.results[i].question;
-            //     questionObject.correctAnswer = response.results[i].correct_answer;
-            //     questionObject.incorrectAnswers = response.results[i].incorrect_answers;
-            //     triviaQuestions.push(questionObject);
-            //     // console.log(questionObject);
-            // }
-
-            // var queryURL = "https://opentdb.com/api.php?amount=5&difficulty=" + difficulty + "&type=multiple"
-
-            // $.ajax({
-            //     url: queryURL,
-            //     method: "GET"
-            // }).then(function (response) {
-            //     console.log("In Ajax Call");
-            //     console.log(response);
-
-            //     for (i = 0; i < response.results.length; i++) {
-            //         // triviaQuestions
-            //         var questionObject = {}
-            //         questionObject.questionNumber = difficulty + "_" + i;
-            //         questionObject.question = response.results[i].question;
-            //         questionObject.correctAnswer = response.results[i].correct_answer;
-            //         questionObject.incorrectAnswers = response.results[i].incorrect_answers;
-            //         triviaQuestions.push(questionObject);
-            //         // console.log(questionObject);
-            //     }
-
-            // triviaQuestions[0].question = response.results[0].question;;
-            // console.log(triviaQuestions);
-            // });
-        }
-
-        // ajaxMapsCall();
+            };
+        };
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBztLFObJ_vMG1zhWlzys8DWeiONElq2EI" async defer></script>
-    <!-- &callback=myMap -->
 
 </body>
 

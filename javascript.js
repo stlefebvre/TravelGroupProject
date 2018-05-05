@@ -24,21 +24,14 @@ $(document).ready(function () {
         var email = $("#email").val();
         var password = $("#password").val();
         var promise = auth.signInWithEmailAndPassword(email, password)
-        console.log(promise)
         isUserSignedIn();
-        promise.catch(function (error) {
-            console.log(error.code);
-            console.log(error.message);
-        });
+        promise.catch(function (error) {});
     };
     //checking if user is signedin
     function isUserSignedIn() {
         auth.onAuthStateChanged(function (user) {
             if (user) {
                 window.location.href = "home.html";
-                console.log("User is signed in.")
-            } else {
-                console.log("No user is signed in.")
             };
         });
     };
@@ -47,11 +40,9 @@ $(document).ready(function () {
     function logout() {
         auth.signOut().then(function () {
             window.location.href = "index.html";
-        }).catch(function (error) {
-            // An error happened.
-        });
+        }).catch(function (error) {});
     };
-    
+
     //hide the create account when the page loads
     function onPageLoad() {
         $("#new-account").hide();
@@ -74,12 +65,8 @@ $(document).ready(function () {
 
 
         var promise = auth.createUserWithEmailAndPassword(email, password)
-        console.log(promise)
         login();
-        promise.catch(function (error) {
-            console.log(error.code);
-            console.log(error.message);
-        });
+        promise.catch(function (error) {});
 
         // Creates local "temporary" object for holding new train data
         var newUser = {
@@ -168,11 +155,10 @@ $(document).ready(function () {
     var startPointGlobal = "";
     var endPointGlobal = "";
 
-//function for Google Maps
+    //function for Google Maps
     function myMap() {
 
-        var map = new google.maps.Map(document.getElementById('map'), {
-        });
+        var map = new google.maps.Map(document.getElementById('map'), {});
 
         var directionsDisplay = new google.maps.DirectionsRenderer({
             map: map
@@ -190,12 +176,9 @@ $(document).ready(function () {
         var directionsService = new google.maps.DirectionsService();
         directionsService.route(request, function (response, status) {
             if (status == 'OK') {
-                // response.routes[0].legs[0].duration.text
-                // debugger;
                 // Display the route on the map.
 
                 driveTime = response.routes[0].legs[0].duration.text;
-                console.log(driveTime);
                 driveDistance = response.routes[0].legs[0].distance.text;
                 startAddress = response.routes[0].legs[0].start_address;
                 endAddress = response.routes[0].legs[0].end_address;
@@ -209,22 +192,16 @@ $(document).ready(function () {
         });
     }
     database.ref().on("value", function (snapshot) {
-        console.log(snapshot);
         startPointGlobal = snapshot.val().startPoint;
-        console.log(startPointGlobal);
         endPointGlobal = snapshot.val().endPoint;
-        console.log(endPointGlobal);
-
         myMap(startPointGlobal, endPointGlobal)
     });
 
     var displayDrivingDetails = function (driveDetails) {
 
         for (i = 0; i < driveDetails.length; i++) {
-            console.log("In driving div");
             var drivingDiv = $("<p>");
             drivingDiv.text(driveDetailsLabels[i] + driveDetails[i]);
-            console.log(drivingDiv);
             $("#drivingDirectionsDetail").append(drivingDiv);
         };
     };
@@ -250,7 +227,6 @@ $(document).ready(function () {
 
     // Whenever a user clicks the submit-item button
     $("#submit-item").on("click", function (event) {
-        console.log("Clicked");
         // Prevent form from submitting
         event.preventDefault();
 
@@ -261,11 +237,9 @@ $(document).ready(function () {
 
         database.ref().on("value", function (snapshot) {
             tempArray = snapshot.val().packingList;
-            console.log("TempArray = " + tempArray);
         });
 
         tempArray.push(val);
-        console.log(tempArray);
         database.ref().update({
             packingList: tempArray,
         });
@@ -279,16 +253,13 @@ $(document).ready(function () {
         if (snapshot.child("packingList").exists()) {
 
             tempArray = snapshot.val().packingList;
-            console.log("In snapshot function " + tempArray);
             putOnPage(tempArray);
 
         }
         // Else if Firebase doesn't have a packingList. Currently no actions.
         else {}
         // If any errors are experienced, log them to console.
-    }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
-    });
+    }, function (errorObject) {});
 
     // render our todos on page load
     putOnPage(packingList);
@@ -299,14 +270,10 @@ $(document).ready(function () {
         var tempArray = [];
         database.ref().on("value", function (snapshot) {
             tempArray = snapshot.val().packingList;
-            console.log("TempArray in delete function= " + tempArray);
         });
 
         // Deletes the item marked for deletion
         tempArray.splice(currentIndex, 1);
-
-        console.log("TempArray after splice " + tempArray);
-
         database.ref().update({
             packingList: tempArray,
         });
@@ -323,12 +290,12 @@ $(document).ready(function () {
     var location = destCity + ", " + destState;
     console.log(location)
     var url = "https://fast-ridge-58490.herokuapp.com/yelp/search?term=" + term + "&location=" + location + "&radius=16093&limit=10"
-    url += + $.param({
+    url += +$.param({
         'price': ("#budget").val().trim()
     })
 
     //AJAX for hotels
-    var hotelSearch ={
+    var hotelSearch = {
         "async": true,
         "crossDomain": true,
         "url": "https://fast-ridge-58490.herokuapp.com/yelp/search?term=hotel&location=" + location + "&radius=16093&limit=10",
@@ -340,19 +307,19 @@ $(document).ready(function () {
         var businesses = response.businesses;
         //List set outside of the function so that it can be called for multiple loops
         var hotelList = $("<ul>")
-        
-            for (var i = 0; i < businesses.length; i++) {
-                var hotelListItem = $("<li>");
-                hotelListItem.append("<p> Hotel Name: " + businesses[i].name + "</p>");
-                hotelListItem.append("<p> Street: " + businesses[i].location.display_address[0] + "</p>");
-                hotelListItem.append("<p> City, State: " + businesses[i].location.display_address[1]+ "</p>");
-                hotelListItem.append("<p> Phone Number: " + businesses[i].phone + "</p>");
-                hotelListItem.append("<p> Web Address: " + businesses[i].url + "</p>");
 
-                hotelList.append(hotelListItem);
-                $("#hotels").append(hotelList)
-                    //build a div with id of hotels
-            };
+        for (var i = 0; i < businesses.length; i++) {
+            var hotelListItem = $("<li>");
+            hotelListItem.append("<p> Hotel Name: " + businesses[i].name + "</p>");
+            hotelListItem.append("<p> Street: " + businesses[i].location.display_address[0] + "</p>");
+            hotelListItem.append("<p> City, State: " + businesses[i].location.display_address[1] + "</p>");
+            hotelListItem.append("<p> Phone Number: " + businesses[i].phone + "</p>");
+            hotelListItem.append("<p> Web Address: " + businesses[i].url + "</p>");
+
+            hotelList.append(hotelListItem);
+            $("#hotels").append(hotelList)
+            //build a div with id of hotels
+        };
     });
 
 
@@ -363,26 +330,26 @@ $(document).ready(function () {
         "url": url,
         "method": "GET"
     }
-    
+
     $.ajax(businessSearch).done(function (response) {
         console.log(response);
         var businesses = response.businesses;
         //List set outside of the function so that it can be called for multiple loops
         var list = $("<ul>")
-        
-            for (var i = 0; i < businesses.length; i++) {
-                var listItem = $("<li>");
-                listItem.append("<p> Business Name: " + businesses[i].name + "</p>");
-                listItem.append("<p> Street: " + businesses[i].location.display_address[0] + "</p>");
-                listItem.append("<p> City, State: " + businesses[i].location.display_address[1]+ "</p>");
-                listItem.append("<p> Phone Number: " + businesses[i].phone + "</p>");
-                listItem.append("<p> Web Address: " + businesses[i].url + "</p>");
 
-                list.append(listItem);
-                $("#activities").append(list)
-                    //build a div with id of activities
-            };
+        for (var i = 0; i < businesses.length; i++) {
+            var listItem = $("<li>");
+            listItem.append("<p> Business Name: " + businesses[i].name + "</p>");
+            listItem.append("<p> Street: " + businesses[i].location.display_address[0] + "</p>");
+            listItem.append("<p> City, State: " + businesses[i].location.display_address[1] + "</p>");
+            listItem.append("<p> Phone Number: " + businesses[i].phone + "</p>");
+            listItem.append("<p> Web Address: " + businesses[i].url + "</p>");
+
+            list.append(listItem);
+            $("#activities").append(list)
+            //build a div with id of activities
+        };
     });
 
-   
+
 });
