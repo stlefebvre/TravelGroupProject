@@ -1,6 +1,25 @@
+body {
+    font-family: 'Nunito', sans-serif;
+    background: #348F50;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #56B4D3, #348F50);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #56B4D3, #348F50);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
 .headerRowCSS {
-    /* color: aqua; */
-    background: green;
+    border-bottom-style: double;
+    border-width: 1 px;
+    font-family: 'Nunito Sans', sans-serif;
+    color: white;
+    font-size: xx-large;
+    background: #348F50;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #56B4D3, #348F50);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #56B4D3, #348F50);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 #headerContainer {
@@ -9,18 +28,21 @@
 
 #navbarCSS {
     padding: 0;
+    color: white;
+    font-family: 'Lora', serif;
+    border-bottom: double;
 }
 
 #siteTitle {
     color: white;
-    /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
-    font-family: 'Gugi', cursive;
+    font-family: 'Lora', serif;
     font-size: xx-large;
     padding-left: 0px;
 }
 
 #navButtons {
     color: white;
+    font-family: 'Lora'
 }
 
 .nav-button {
@@ -31,8 +53,8 @@
 }
 
 /* #nav-button-Home {
-    border-right: 2px solid;
-} */
+        border-right: 2px solid;
+    } */
 
 .nav-button-link {
     color: white;
@@ -45,21 +67,18 @@
     height: 55px;
     float: left;
     /* font-family: Arial, Helvetica, sans-serif; */
-    font-family: 'Gugi', cursive;
     font-size: 20px;
     color: white;
 }
 
 .pageTitle {
-    font-family: 'Gugi', cursive;
     font-size: 20px;
-    color: black;
-    
+    color: white;
 }
 
 #tripTasksHeader {
     font-size: 20px;
-    color: darkblue;
+    color: white;
     font-weight: bold;
     padding-top: 15px;
     padding-left: 5px;
@@ -70,13 +89,28 @@
 
 .tripTasks {
     font-size: 20px;
-    color: maroon;
+    color: white;
     font-weight: bold;
     padding-top: 15px;
     border-radius: 20px;
 }
 
 .selectedTripTask {
-    background: darkblue;
+    color: white;
+    background-color: #348F50;
+    border: solid;
+    border-width: 1px;
+}
+
+#itinerary-results {
+    color: white;
+    border-left-style: double;
+}
+
+#itinerary-links {
+    border-left-style: double;
+}
+
+#drivingDirectionsHeader {
     color: white;
 }
