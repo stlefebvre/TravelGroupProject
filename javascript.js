@@ -51,11 +51,13 @@ $(document).ready(function () {
             // An error happened.
         });
     };
+    
     //hide the create account when the page loads
     function onPageLoad() {
         $("#new-account").hide();
     };
 
+    onPageLoad();
     //=============================================================================================  
     // New user account
     $("#create-account").on("click", function (event) {
@@ -350,7 +352,7 @@ $(document).ready(function () {
                 hotelList.append(hotelListItem);
                 $("#hotels").append(hotelList)
                     //build a div with id of hotels
-            }
+            };
     });
 
 
@@ -382,5 +384,5 @@ $(document).ready(function () {
             };
     });
 
-    onPageLoad()
+   
 });
