@@ -286,10 +286,6 @@ $(document).ready(function () {
 
     //Yelp api
 
-    // var term = $("#interests").val().trim();
-    // var destCity = $("#destination-city").val();
-    // var destState = $("#destination-state").val();
-
     var term = "";
     var destCity = "";
     var destState = "";
@@ -301,21 +297,13 @@ $(document).ready(function () {
         destCity = snapshot.val().destCity;
         destState = snapshot.val().destState;
         budget = parseInt(snapshot.val().budget);
-        console.log(budget)
         hotelSearch()
     });
     
-  
-    console.log(location)
 
     function hotelSearch () {
     var location = destCity + ", " + destState;
-    console.log(location + "where exists")
     var url = "https://fast-ridge-58490.herokuapp.com/yelp/search?term=" + term + "&price=" + "&location=" + location + "&radius=16093&limit=10"
-    // url += +$.param({
-    //     'price': budget
-    // })
-    console.log(url + "when built")
 
     //AJAX for hotels
     var hotelSearch = {
@@ -326,7 +314,6 @@ $(document).ready(function () {
     }
 
     $.ajax(hotelSearch).done(function (response) {
-        console.log(response);
         var businesses = response.businesses;
         //List set outside of the function so that it can be called for multiple loops
         var hotelList = $("<ul>")
@@ -355,7 +342,6 @@ $(document).ready(function () {
     }
 
     $.ajax(businessSearch).done(function (response) {
-        console.log(response);
         var businesses = response.businesses;
         //List set outside of the function so that it can be called for multiple loops
         
