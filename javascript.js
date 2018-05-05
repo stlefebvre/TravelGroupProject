@@ -19,7 +19,6 @@ $(document).ready(function () {
     //May not need Client ID for Yelp.
     var yelpURL = "https://api.yelp.com/v3/businesses/search"
 
-    var googleMapAPIKey = "AIzaSyBztLFObJ_vMG1zhWlzys8DWeiONElq2EI"
     //login to Firebase
     function login() {
         var email = $("#email").val();
@@ -70,8 +69,7 @@ $(document).ready(function () {
         var phoneNumber = $("#phone-number").val().trim();
         var password = $("#pass-word").val().trim();
 
-        //clear form
-        clearForm();
+
 
         var promise = auth.createUserWithEmailAndPassword(email, password)
         console.log(promise)
@@ -91,7 +89,10 @@ $(document).ready(function () {
         };
 
         // Push to database
-        database.ref().push(newUser);
+        database.ref().set(newUser);
+
+        //clear form
+        clearForm();
 
     });
 
@@ -109,6 +110,7 @@ $(document).ready(function () {
         var endDate = $("#end-date").val();
         var destinationCity = $("#destination-city").val().trim();
         var destinationState = $("#destination-state").val().trim();
+        var endPoint = destinationCity + " " + destinationState;
         var interests = $("#interests").val().trim();
         var interestsArray = interests.split(",");
         var budget = $("#budget").val().trim();
@@ -116,10 +118,6 @@ $(document).ready(function () {
         $("#accommodations option:selected").each(function (i, selectedElement) {
             accommodations[i] = $(selectedElement).val();
         });
-        var travelMode = $("input[name='travel-mode']:checked").val();
-
-        //clear form
-        clearForm();
 
         // Creates local "temporary" object for holding new train data
         var newUser = {
@@ -127,27 +125,31 @@ $(document).ready(function () {
             startPoint: startPoint,
             startDate: startDate,
             endDate: endDate,
-            destinationCity: destinationCity,
-            destinationState: destinationState,
+            endPoint: endPoint,
             interestsArray: interestsArray,
             budget: budget,
             accommodations: accommodations,
-            travelMode: travelMode
+            // travelMode: travelMode
         };
 
         // Push to database
-        database.ref().push(newUser);
+        database.ref().set(newUser);
+
+        //navigate to Itinerary page
+        window.location.href = "itinerary-template.html";
+
+        //clear form
+        clearForm();
     });
 
-    $("body").on("click", "#sign-in", login).on("click", "#logout", logout)
-    $("#sign-up-link").on("click", function () {
+    //click functions for login/logout and navigation
+    $("body").on("click", "#sign-in", login).on("click", "#logout", logout).on("click", "#nav-button-Home", function () {
+        window.location.href = "home.html";
+    }).on("click", "#start", function () {
+        window.location.href = "newTrip.html";
+    }).on("click", "#sign-up-link", function () {
         $("#new-account").show();
         $("#sign-in-container").hide();
-    }).on("click", "start-journey", function () {
-        window.location.href = "itinerary-template.html"
-    });
-    $("div").on("click", "#start", function () {
-        window.location.href = "newTrip.html";
     });
 
     // Function to clear user input fields
@@ -155,5 +157,165 @@ $(document).ready(function () {
         $(".form-control").val("");
         $(".password").val("");
     };
+
+    var driveTime = "";
+    var driveDistance = "";
+    var startAddress = "";
+    var endAddress = "";
+    var driveDetailsLabels = ["Your driving time is: ", "Your driving distance is: ", "Your start location is: ", "Your end location is: "];
+    var startPointGlobal = "";
+    var endPointGlobal = "";
+
+
+
+
+
+    function myMap() {
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            // // center: startPointGlobal,
+            // zoom: 7
+        });
+
+        var directionsDisplay = new google.maps.DirectionsRenderer({
+            map: map
+        });
+
+        // Set destination, origin and travel mode.
+        var request = {
+            destination: endPointGlobal,
+            origin: startPointGlobal,
+            travelMode: 'DRIVING'
+        };
+
+
+        // Pass the directions request to the directions service.
+        var directionsService = new google.maps.DirectionsService();
+        directionsService.route(request, function (response, status) {
+            if (status == 'OK') {
+                // response.routes[0].legs[0].duration.text
+                // debugger;
+                // Display the route on the map.
+
+                driveTime = response.routes[0].legs[0].duration.text;
+                console.log(driveTime);
+                driveDistance = response.routes[0].legs[0].distance.text;
+                startAddress = response.routes[0].legs[0].start_address;
+                endAddress = response.routes[0].legs[0].end_address;
+
+                var driveDetails = [driveTime, driveDistance, startAddress, endAddress];
+
+                directionsDisplay.setDirections(response);
+
+                displayDrivingDetails(driveDetails);
+            }
+        });
+    }
+    database.ref().on("value", function (snapshot) {
+        console.log(snapshot);
+        startPointGlobal = snapshot.val().startPoint;
+        console.log(startPointGlobal);
+        endPointGlobal = snapshot.val().endPoint;
+        console.log(endPointGlobal);
+
+        myMap(startPointGlobal, endPointGlobal)
+    });
+
+    var displayDrivingDetails = function (driveDetails) {
+
+        for (i = 0; i < driveDetails.length; i++) {
+            console.log("In driving div");
+            var drivingDiv = $("<p>");
+            drivingDiv.text(driveDetailsLabels[i] + driveDetails[i]);
+            console.log(drivingDiv);
+            $("#drivingDirectionsDetail").append(drivingDiv);
+        };
+    };
+
+    var packingList = ["Shirts", "Passport", "Book"];
+
+    database.ref().update({
+        packingList: packingList,
+    });
+
+    function putOnPage(tempArray) {
+
+        $("#packing-list").empty(); // empties out the html
+
+        // render our insideList todos to the page
+        for (var i = 0; i < tempArray.length; i++) {
+            var p = $("<p>").text(tempArray[i]);
+            var b = $("<button class='delete'>").text("x").attr("data-index", i);
+            p.prepend(b);
+            $("#packing-list").prepend(p);
+        }
+    }
+
+    // Whenever a user clicks the submit-item button
+    $("#submit-item").on("click", function (event) {
+        console.log("Clicked");
+        // Prevent form from submitting
+        event.preventDefault();
+
+        var tempArray = [];
+        var val = $("input[type='text']").val();
+        $("input[type='text']").val("");
+
+
+        database.ref().on("value", function (snapshot) {
+            tempArray = snapshot.val().packingList;
+            console.log("TempArray = " + tempArray);
+        });
+
+        tempArray.push(val);
+        console.log(tempArray);
+        database.ref().update({
+            packingList: tempArray,
+        });
+
+        putOnPage(tempArray);
+    });
+
+    database.ref().on("value", function (snapshot) {
+
+        // If Firebase has a highPrice and highBidder stored (first case)
+        if (snapshot.child("packingList").exists()) {
+
+            tempArray = snapshot.val().packingList;
+            console.log("In snapshot function " + tempArray);
+            putOnPage(tempArray);
+
+        }
+        // Else if Firebase doesn't have a packingList. Currently no actions.
+        else {}
+        // If any errors are experienced, log them to console.
+    }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+    });
+
+    // render our todos on page load
+    putOnPage(packingList);
+
+    $(document).on("click", "button.delete", function () {
+
+        var currentIndex = $(this).attr("data-index");
+        var tempArray = [];
+        database.ref().on("value", function (snapshot) {
+            tempArray = snapshot.val().packingList;
+            console.log("TempArray in delete function= " + tempArray);
+        });
+
+        // Deletes the item marked for deletion
+        tempArray.splice(currentIndex, 1);
+
+        console.log("TempArray after splice " + tempArray);
+
+        database.ref().update({
+            packingList: tempArray,
+        });
+
+        putOnPage(tempArray);
+    });
+
     onPageLoad()
 });
