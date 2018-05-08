@@ -95,7 +95,7 @@ body {
     border-radius: 20px;
 }
 
-.selectedTripTask {
+.tripTasks:selected {
     color: white;
     background-color: #348F50;
     border: solid;
@@ -113,4 +113,22 @@ body {
 
 #drivingDirectionsHeader {
     color: white;
+}
+
+.business-items, .hotel-items {
+    color: white;
+    margin-bottom: 30px;
+    border: 1px;
+    border-style: solid;
+    padding-top: 10px;
+}
+
+.business-info, .hotel-info {
+    margin-top: 0;
+    line-height: 2px;
+}
+
+#actHeaderText, #hotelsHeaderText {
+    color: white;
+    text-decoration: underline;
 }
