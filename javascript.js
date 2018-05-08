@@ -285,6 +285,12 @@ $(document).ready(function () {
     });
 
     //Yelp api
+    $("#activitiesButton").on("click", function(event) {
+        $("#activities").show();
+    });
+    $("#hotelsButton").on("click", function(event) {
+        $("#hotels").show();
+    });
 
     var term = "";
     var destCity = "";
@@ -299,7 +305,6 @@ $(document).ready(function () {
         budget = parseInt(snapshot.val().budget);
         hotelSearch()
     });
-
 
     function hotelSearch() {
         var location = destCity + ", " + destState;
@@ -361,11 +366,26 @@ $(document).ready(function () {
             };
         });
     };
-
-    // $("body").on("click", "#trip-overview", function (event) {
-    //     // prevent page from refreshing when form tries to submit itself
-    //     event.preventDefault();
      
+    $.ajax(businessSearch).done(function (response) {
+        var businesses = response.businesses;
+        //List set outside of the function so that it can be called for multiple loops
+        
+        var list = $("<ul class='business-list'>")
+
+        for (var i = 0; i < businesses.length; i++) {
+            var listItem = $("<li class='business-items'>");
+            listItem.append("<p class='business-info'> <strong>Business Name:</strong> " + businesses[i].name + "</p>");
+            listItem.append("<p class='business-info'> <strong>Street:</strong> " + businesses[i].location.display_address[0] + "</p>");
+            listItem.append("<p class='business-info'>&#8195;&#8195;&#8195; " + businesses[i].location.display_address[1] + "</p>");
+            listItem.append("<p class='business-info'> <strong>Phone Number:</strong> " + businesses[i].phone + "</p>");
+
+            list.append(listItem);
+            $("#activities").append(list).hide();
+            //build a div with id of activities
+        };
+    });
+};
         var tripName, startPoint, startDate, endDate, travelDates, destCity, deststate, endPoint, interestsArray, budget;
         database.ref().on("value", function (snapshot) {
             $(".trip-overview").empty();
@@ -384,8 +404,6 @@ $(document).ready(function () {
             $("#destination").append(endPoint);
             $("#interests").append(interestsArray.toString());
         });
-
   
-    // })
 
 });
