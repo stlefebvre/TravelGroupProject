@@ -17,8 +17,6 @@
 </head>
 
 <body>
-
-
     <header class="row headerRowCSS">
         <div class="container" id="headerContainer">
             <div class="navbar navbar-expand-lg flex-column flex-md-row" id="navbarCSS">
@@ -46,16 +44,16 @@
     </header>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-sm-6 col-md-8">
+            <div class="col-xs-6 col-sm-6 col-md-8">
 
                 <div id="accordion">
                     <div class="card">
                         <div class="card-header" id="headingOne">
-                            <h5 class="mb-0">
+                            <h3 class="mb-0">
                                 <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                     Basic Trip Info
                                 </button>
-                            </h5>
+                            </h3>
                         </div>
 
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
@@ -196,39 +194,65 @@
                     </div>
                     <div class="card">
                         <div class="card-header" id="headingThree">
-                            <h5 class="mb-0">
+                            <h3 class="mb-0">
                                 <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                     Interests
                                 </button>
-                            </h5>
+                            </h3>
                         </div>
                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
 
-                            <div class="form-group m-3">
+                            <!-- <div class="form-group m-3">
                                 <label for="interests">Enter up to 5 interests (seperated by comma)</label>
                                 <input type="text" class="form-control" name="interests" id="interests" required>
+                            </div> -->
+                            <div class="form-inline justify-content-center">
+
+                                <div class="form-check p-1 m-3">
+                                    <input type="checkbox" class="form-check-input interests" value="eating" id="eating">
+                                    <label class="form-check-label" for="eating">Eating</label>
+                                </div>
+                                <div class="form-check p-1 m-3">
+                                    <input type="checkbox" class="form-check-input interests" value="music" id="music">
+                                    <label class="form-check-label" for="music">Music</label>
+                                </div>
+
+                                <div class="form-check m-3">
+                                    <input type="checkbox" class="form-check-input interests" value="hiking" id="hiking">
+                                    <label class="form-check-label" for="hiking">Hiking</label>
+                                </div>
+                                <div class="form-check m-3">
+                                    <input type="checkbox" class="form-check-input interests" value="biking" id="biking">
+                                    <label class="form-check-label" for="biking">Biking</label>
+                                </div>
+                                <div class="form-check m-3">
+                                    <input type="checkbox" class="form-check-input interests" value="tours" id="tours">
+                                    <label class="form-check-label" for="tours">Tours</label>
+                                </div>
                             </div>
+
                         </div>
+
                     </div>
                     <div class="card">
                         <div class="card-header" id="headingTwo">
-                            <h5 class="mb-0">
+                            <h3 class="mb-0">
                                 <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                     When are you going?
                                 </button>
-                            </h5>
+                            </h3>
                         </div>
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                             <div class="card-body">
                                 <form class="form-inline">
                                     <div class="form-group">
-                                        <div class="form-group mx-sm-3 mb-2">
-                                            <label for="start-date" class="form-label">Start Date:</label>
+                                        <div class="form-group mx-sm-3 m-2 ">
+                                            <label for="start-date" class="form-label p-2">Start Date:</label>
                                             <input type="date" class="form-control" id="start-date" required>
                                         </div>
 
-                                        <div class="form-group mx-sm-3 p-2">
-                                            <label for="end-date" class="form-label">End date:</label>
+                                        <div class="form-group mx-sm-3 m-2">
+                                            <label for="end-date" class="form-label p-2">End date:</label>
                                             <input type="date" class="form-control" id="end-date" required>
                                         </div>
                                     </div>
