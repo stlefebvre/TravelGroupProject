@@ -102,28 +102,20 @@ $(document).ready(function () {
         // var endPoint = destinationCity + " " + destinationState;
         var interests = $("#interests").val().trim();
         var interestsArray = interests.split(",");
-        var budget = $("#budget").val().trim();
-        var accommodations = [];
-        $("#accommodations option:selected").each(function (i, selectedElement) {
-            accommodations[i] = $(selectedElement).val();
-        });
 
         // Creates local "temporary" object for holding new train data
-        var newUser = {
+        var newTrip = {
             tripName: tripName,
             startPoint: startPoint,
             startDate: startDate,
-            destCity: endDate,
+            endDate: endDate,
             destState: destState,
             destCity: destCity,
             interestsArray: interestsArray,
-            budget: budget,
-            accommodations: accommodations,
-            // travelMode: travelMode
         };
 
         // Push to database
-        database.ref().set(newUser);
+        database.ref().set(newTrip);
 
         //navigate to Itinerary page
         window.location.href = "itinerary-template.html";
@@ -295,14 +287,12 @@ $(document).ready(function () {
     var term = "";
     var destCity = "";
     var destState = "";
-    var budget = "";
 
 
     database.ref().on("value", function (snapshot) {
         term = snapshot.val().interestsArray;
         destCity = snapshot.val().destCity;
         destState = snapshot.val().destState;
-        budget = parseInt(snapshot.val().budget);
         hotelSearch()
     });
 
@@ -385,7 +375,8 @@ $(document).ready(function () {
             //build a div with id of activities
         };
     });
-};
+
+
         var tripName, startPoint, startDate, endDate, travelDates, destCity, deststate, endPoint, interestsArray, budget;
         database.ref().on("value", function (snapshot) {
             $(".trip-overview").empty();
@@ -404,6 +395,6 @@ $(document).ready(function () {
             $("#destination").append(endPoint);
             $("#interests").append(interestsArray.toString());
         });
-  
 
-});
+
+    });
