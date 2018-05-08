@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Packing List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Gugi" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="reset.css">
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Lora\Nunito|Nunito+Sans" rel="stylesheet">
+
+    
+
+    <!-- Bootstrap CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="itinerary-style.css">
+    
+</head>
+
+<body>
+    <header class="row headerRowCSS">
+        <div class="container" id="headerContainer">
+            <div class="navbar navbar-expand-lg flex-column flex-md-row" id="navbarCSS">
+                <a class="navbar-brand nav-left col-md-3 col-sm-12 col-xs-12" id="siteTitle" href="#">Trip Time!</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse col-md-auto col-sm-12 col-xs-12 justify-content-end nav-right" id="navbarSupportedContent">
+                    <ul class="navbar-nav" id="navButtons">
+                        <li class="nav-item nav-button" id="nav-button-Home">
+                            <a class="nav-link nav-button-link" href="home.html">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item nav-button" id="nav-button-Home">
+                                <a class="nav-link nav-button-link" href="newTrip.html">New Trip
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                        <li class="nav-item nav-button">
+                            <a class="nav-link nav-button-link" href="#" id="logout">Logout
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="container">
+        <div class="row">
+            <nav class="nav flex-column col-md-2">
+                <p id="tripTasksHeader">Trip Checklist</p>
+                <a class="nav-link tripTasks" href="trip-overview.html">Trip Overview</a>
+                <a class="nav-link tripTasks" href="directions-template.html">Directions</a>
+                <a class="nav-link tripTasks" href="#">Accommodation</a>
+                <a class="nav-link tripTasks active selectedTripTask" href="packing-list-template.html">Packing List</a>
+                <a class="nav-link tripTasks" href="itinerary-activities.html">Activities</a>
+            </nav>
+
+            <div class="col-md-10">
+                <div class="row justify-content-center">
+                    <h3 id="headerText">Packing List</h3>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-auto">
+                        <form>
+                            <select id="packingCategory">
+                                <option value="0">To-Dos</option>
+                                <option value="1">Essentials</option>
+                                <option value="2">Specialty Trip Items</option>
+    
+                            </select>
+                            <input type="text">
+                            <input type="submit" value="Add to Packing List" id="submit-item">
+                        </form>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-4">
+                        <p class="packing-list-headers">To Dos</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="packing-list-headers">Essential Items</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="packing-list-headers">Specialty Items</p>
+                    </div>
+
+                </div>
+                <div class="row justify-content-center" id="packing-list">
+                    <div class="col-md-4" id="toDoColumn">
+                        <p>test data</p>
+                    </div>
+                    <div class="col-md-4" id="essentialItemsColumn">
+                            <p>test data</p>
+                    </div>
+                    <div class="col-md-4" id="specialtyItemsColumn">
+                            <p>test data</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function ajaxMapsCall() {
+
+            var googleMapAPIKey = "AIzaSyBztLFObJ_vMG1zhWlzys8DWeiONElq2EI";
+            var callBack = "initMap";
+            var googleMapQueryURL = "https://maps.googleapis.com/maps/api/js?key=" + googleMapAPIKey;
+
+            function initMap() {
+                // Create a map object and specify the DOM element for display.
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: {
+                        lat: -34.397,
+                        lng: 150.644
+                    },
+                    zoom: 8
+                });
+            };
+        };
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBztLFObJ_vMG1zhWlzys8DWeiONElq2EI" async defer></script>
+    <!-- bootstrap references -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+      crossorigin="anonymous"></script>
+    <!-- Firebase reference-->
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+
+    <!-- link to external javascript -->
+    <script src="javascript.js"></script>
+
+</body>
+
+</html>

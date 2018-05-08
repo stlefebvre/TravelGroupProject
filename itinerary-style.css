@@ -95,7 +95,7 @@ body {
     border-radius: 20px;
 }
 
-.tripTasks:selected {
+.selectedTripTask {
     color: white;
     background-color: #348F50;
     border: solid;
@@ -131,4 +131,56 @@ body {
 #actHeaderText, #hotelsHeaderText {
     color: white;
     text-decoration: underline;
+}
+
+#headerText {
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 60px;
+}
+
+#submit-item {
+    font-weight: bold;
+    /* font-family: 'Courier New', Courier, monospace; */
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+    background: darkblue;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.packing-list-headers {
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-top: 8px;
+    margin-bottom: 0;
+}
+
+#packing-list {
+    margin-top: 20px;
+}
+
+.packingListElements {
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    color: darkblue;
+    background: lightblue;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+.packingButton {
+    margin: 4px;
+    font-weight: bolder;
+}
+.drivingLabels {
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+.drivingContent {
+    font-weight: bold;
+    color: maroon;
 }
