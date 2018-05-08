@@ -101,7 +101,7 @@ $(document).ready(function () {
         var destState = $("#destination-state").val().trim();
         var interests = $("#interests").val().trim();
         var interestsArray = interests.split(",");
-         // var accommodations = [];
+        // var accommodations = [];
         // $("#accommodations option:selected").each(function (i, selectedElement) {
         //     accommodations[i] = $(selectedElement).val();
         // });
@@ -198,7 +198,7 @@ $(document).ready(function () {
 
     var displayDrivingDetails = function (driveDetails) {
 
-     for (i = 0; i < driveDetails.length; i++) {
+        for (i = 0; i < driveDetails.length; i++) {
             var drivingDiv = $("<p class='drivingLabels'>");
             var drivingDiv2 = $("<span class='drivingContent'>");
             drivingDiv.text(driveDetailsLabels[i]);
@@ -208,36 +208,33 @@ $(document).ready(function () {
         };
     };
 
-var packingList = ["Shirts", "Passport", "Book"];
-   var packingListToDos = ["Charge Devices", "Lock Doors and Windows", "Take out the Trash", "Empty the Fridge", " Get Travel Insurance"];
-   var packingListEssentials = ["Lotion", "Shampoo + Conditioner", "Deodorant", "Hairbrush/Comb", "Toothbrush + Toothpaste", "Laptop + Charger", "Books", "Wallet + Keys", "Itinerary", "Medical Insurance Card", "Passport (& Visa)"];
-   var packingListSpecialty = ["Hiking Boots", "Ski Gear", "Tent", "Bicycle", "Backpack", "Sleeping Bag"];
+    var packingList = ["Shirts", "Passport", "Book"];
+    var packingListToDos = ["Charge Devices", "Lock Doors and Windows", "Take out the Trash", "Empty the Fridge", " Get Travel Insurance"];
+    var packingListEssentials = ["Lotion", "Shampoo + Conditioner", "Deodorant", "Hairbrush/Comb", "Toothbrush + Toothpaste", "Laptop + Charger", "Books", "Wallet + Keys", "Itinerary", "Medical Insurance Card", "Passport (& Visa)"];
+    var packingListSpecialty = ["Hiking Boots", "Ski Gear", "Tent", "Bicycle", "Backpack", "Sleeping Bag"];
 
-   var packingListArrays = [packingListToDos, packingListEssentials, packingListSpecialty];
-   console.log(packingListArrays);
-   console.log(packingListArrays[0][2]);
-   var packingListDivs = ["#toDoColumn", "#essentialItemsColumn", "#specialtyItemsColumn"];
+    var packingListArrays = [packingListToDos, packingListEssentials, packingListSpecialty];
+    var packingListDivs = ["#toDoColumn", "#essentialItemsColumn", "#specialtyItemsColumn"];
 
-   
-   function putOnPage() {
 
-       for (var j=0; j<packingListDivs.length; j++) {
-           $(packingListDivs[j]).empty();
-           console.log(packingListArrays[0].length);
-           for (var i = 0; i < packingListArrays[j].length; i++) {
-               var p = $("<p class='packingListElements'>").text(packingListArrays[j][i]);
-               var b = $("<button class='packingButton delete'>").text("x").attr("data-col",j).attr("data-index", i);
-               p.prepend(b);
-               $(packingListDivs[j]).prepend(p);
-           }
-       }
-   }
+    function putOnPage() {
 
-   putOnPage();
+        for (var j = 0; j < packingListDivs.length; j++) {
+            $(packingListDivs[j]).empty();
+            for (var i = 0; i < packingListArrays[j].length; i++) {
+                var p = $("<p class='packingListElements'>").text(packingListArrays[j][i]);
+                var b = $("<button class='packingButton delete'>").text("x").attr("data-col", j).attr("data-index", i);
+                p.prepend(b);
+                $(packingListDivs[j]).prepend(p);
+            }
+        }
+    }
 
-   database.ref().update({
-       packingListArrays: packingListArrays,
-   });
+    putOnPage();
+
+    database.ref().update({
+        packingListArrays: packingListArrays,
+    });
 
     // Whenever a user clicks the submit-item button
     $("#submit-item").on("click", function (event) {
@@ -259,8 +256,6 @@ var packingList = ["Shirts", "Passport", "Book"];
 
         if (snapshot.child("packingListArrays").exists()) {
 
-            console.log("packing List exists in the firebase");
-
             tempArray = snapshot.val().packingListArrays;
             packingListArrays = tempArray;
             putOnPage();
@@ -268,7 +263,7 @@ var packingList = ["Shirts", "Passport", "Book"];
         }
         // Else if Firebase doesn't have a packingList. Currently no actions.
         else {
-            console.log("No Packing List Exists");
+
         }
         // If any errors are experienced, log them to console.
     }, function (errorObject) {});
@@ -284,19 +279,19 @@ var packingList = ["Shirts", "Passport", "Book"];
 
         tempArray = packingListArrays;
 
-        tempArray[currentCol].splice(currentIndex,1);
+        tempArray[currentCol].splice(currentIndex, 1);
 
         database.ref().update({
-                packingListArrays: tempArray,
-            });
+            packingListArrays: tempArray,
+        });
 
     });
 
     //Yelp api
-    $("#activitiesButton").on("click", function(event) {
+    $("#activitiesButton").on("click", function (event) {
         $("#activities").show();
     });
-    $("#hotelsButton").on("click", function(event) {
+    $("#hotelsButton").on("click", function (event) {
         $("#hotels").show();
     });
 
@@ -372,25 +367,25 @@ var packingList = ["Shirts", "Passport", "Book"];
             };
         });
     };
-     
-        var tripName, startPoint, startDate, endDate, travelDates, destCity, deststate, endPoint, interestsArray;
-        database.ref().on("value", function (snapshot) {
-            $(".trip-overview").empty();
-            tripName = snapshot.val().tripName;
-            startPoint = snapshot.val().startPoint;
-            startDate = snapshot.val().startDate;
-            endDate = snapshot.val().endDate;
-            travelDates = startDate + " - " + endDate;
-            destCity = snapshot.val().destCity;
-            destState = snapshot.val().destState;
-            endPoint = destCity + " " + destState;
-            interestsArray = snapshot.val().interestsArray;
-            $("#trip-name").append(tripName);
-            $("#starting-point").append(startPoint);
-            $("#travel-dates").append(travelDates);
-            $("#destination").append(endPoint);
-            $("#interests").append(interestsArray.toString());
-        });
 
-
+    var tripName, startPoint, startDate, endDate, travelDates, destCity, deststate, endPoint, interestsArray;
+    database.ref().on("value", function (snapshot) {
+        $(".trip-overview").empty();
+        tripName = snapshot.val().tripName;
+        startPoint = snapshot.val().startPoint;
+        startDate = snapshot.val().startDate;
+        endDate = snapshot.val().endDate;
+        travelDates = startDate + " - " + endDate;
+        destCity = snapshot.val().destCity;
+        destState = snapshot.val().destState;
+        endPoint = destCity + " " + destState;
+        interestsArray = snapshot.val().interestsArray;
+        $("#trip-name").append(tripName);
+        $("#starting-point").append(startPoint);
+        $("#travel-dates").append(travelDates);
+        $("#destination").append(endPoint);
+        $("#interests").append(interestsArray.toString());
     });
+
+
+});
