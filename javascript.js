@@ -99,12 +99,12 @@ $(document).ready(function () {
         var endDate = $("#end-date").val();
         var destCity = $("#destination-city").val().trim();
         var destState = $("#destination-state").val().trim();
-        var interests = $("#interests").val().trim();
-        var interestsArray = interests.split(",");
-        // var accommodations = [];
-        // $("#accommodations option:selected").each(function (i, selectedElement) {
-        //     accommodations[i] = $(selectedElement).val();
-        // });
+        var interestsCheck = [];
+        $("input[type='checkbox']").each(function (i, selectedElement) {
+            interestsCheck[i] = $(selectedElement).val();
+        });
+
+        console.log(interestsCheck)
 
         // Creates local "temporary" object for holding new train data
         var newTrip = {
@@ -114,7 +114,7 @@ $(document).ready(function () {
             endDate: endDate,
             destState: destState,
             destCity: destCity,
-            interestsArray: interestsArray,
+            interestsArray: interestsCheck,
         };
 
         // Push to database
