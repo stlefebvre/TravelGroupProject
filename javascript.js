@@ -196,7 +196,7 @@ $(document).ready(function () {
         startPointGlobal = snapshot.val().startPoint;
         destCity = snapshot.val().destCity
         destState = snapshot.val().destState;
-        endPointGlobal =  destCity + destState;
+        endPointGlobal = destCity + destState;
         myMap(startPointGlobal, endPointGlobal)
     });
 
@@ -296,7 +296,7 @@ $(document).ready(function () {
     var destCity = "";
     var destState = "";
     var budget = "";
-   
+
 
     database.ref().on("value", function (snapshot) {
         term = snapshot.val().interestsArray;
@@ -305,46 +305,68 @@ $(document).ready(function () {
         budget = parseInt(snapshot.val().budget);
         hotelSearch()
     });
-    
 
-    function hotelSearch () {
-    var location = destCity + ", " + destState;
-    var url = "https://fast-ridge-58490.herokuapp.com/yelp/search?term=" + term + "&price=" + "&location=" + location + "&radius=16093&limit=4"
+    function hotelSearch() {
+        var location = destCity + ", " + destState;
+        var url = "https://fast-ridge-58490.herokuapp.com/yelp/search?term=" + term + "&price=" + "&location=" + location + "&radius=16093&limit=10"
 
-    //AJAX for hotels
-    var hotelSearch = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://fast-ridge-58490.herokuapp.com/yelp/search?term=hotel&location=" + location + "&radius=16093&limit=4",
-        "method": "GET"
-    }
+        //AJAX for hotels
+        var hotelSearch = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://fast-ridge-58490.herokuapp.com/yelp/search?term=hotel&location=" + location + "&radius=16093&limit=10",
+            "method": "GET"
+        }
 
-    $.ajax(hotelSearch).done(function (response) {
-        var businesses = response.businesses;
-        //List set outside of the function so that it can be called for multiple loops
-        var hotelList = $("<ul class='hotel-list'>")
+        $.ajax(hotelSearch).done(function (response) {
+            var businesses = response.businesses;
+            //List set outside of the function so that it can be called for multiple loops
+            var hotelList = $("<ul>")
 
-        for (var i = 0; i < businesses.length; i++) {
-            var hotelListItem = $("<li class='hotel-items'>");
-            hotelListItem.append("<p class='hotel-info'> <strong>Hotel Name:</strong> " + businesses[i].name + "</p>");
-            hotelListItem.append("<p class='hotel-info'> <strong>Street:</strong> " + businesses[i].location.display_address[0] + "</p>");
-            hotelListItem.append("<p class='hotel-info'>&#8195;&#8195;&#8195;" + businesses[i].location.display_address[1] + "</p>");
-            hotelListItem.append("<p class='hotel-info'> <strong>Phone Number: </strong>" + businesses[i].phone + "</p>");
+            for (var i = 0; i < businesses.length; i++) {
+                var hotelListItem = $("<li>");
+                hotelListItem.append("<p> Hotel Name: " + businesses[i].name + "</p>");
+                hotelListItem.append("<p> Street: " + businesses[i].location.display_address[0] + "</p>");
+                hotelListItem.append("<p> City, State: " + businesses[i].location.display_address[1] + "</p>");
+                hotelListItem.append("<p> Phone Number: " + businesses[i].phone + "</p>");
+                hotelListItem.append("<p> Web Address: " + businesses[i].url + "</p>");
 
-            hotelList.append(hotelListItem);
-            $("#hotels").append(hotelList).hide();
-        };
-    });
+                hotelList.append(hotelListItem);
+                $("#hotels").append(hotelList)
+                //build a div with id of hotels
+            };
+        });
 
 
-    //AJAX for things to do
-    var businessSearch = {
-        "async": true,
-        "crossDomain": true,
-        "url": url,
-        "method": "GET"
-    }
+        //AJAX for things to do
+        var businessSearch = {
+            "async": true,
+            "crossDomain": true,
+            "url": url,
+            "method": "GET"
+        }
 
+        $.ajax(businessSearch).done(function (response) {
+            var businesses = response.businesses;
+            //List set outside of the function so that it can be called for multiple loops
+
+            var list = $("<ul>")
+
+            for (var i = 0; i < businesses.length; i++) {
+                var listItem = $("<li>");
+                listItem.append("<p> Business Name: " + businesses[i].name + "</p>");
+                listItem.append("<p> Street: " + businesses[i].location.display_address[0] + "</p>");
+                listItem.append("<p> City, State: " + businesses[i].location.display_address[1] + "</p>");
+                listItem.append("<p> Phone Number: " + businesses[i].phone + "</p>");
+                listItem.append("<p> Web Address: " + businesses[i].url + "</p>");
+
+                list.append(listItem);
+                $("#activities").append(list)
+                //build a div with id of activities
+            };
+        });
+    };
+     
     $.ajax(businessSearch).done(function (response) {
         var businesses = response.businesses;
         //List set outside of the function so that it can be called for multiple loops
@@ -364,6 +386,24 @@ $(document).ready(function () {
         };
     });
 };
-
+        var tripName, startPoint, startDate, endDate, travelDates, destCity, deststate, endPoint, interestsArray, budget;
+        database.ref().on("value", function (snapshot) {
+            $(".trip-overview").empty();
+            tripName = snapshot.val().tripName;
+            startPoint = snapshot.val().startPoint;
+            startDate = snapshot.val().startDate;
+            endDate = snapshot.val().endDate;
+            travelDates = startDate + " " + endDate;
+            destCity = snapshot.val().destCity;
+            destState = snapshot.val().destState;
+            endPoint = destCity + " " + destState;
+            interestsArray = snapshot.val().interestsArray;
+            $("#trip-name").append(tripName);
+            $("#starting-point").append(startPoint);
+            $("#travel-dates").append(travelDates);
+            $("#destination").append(endPoint);
+            $("#interests").append(interestsArray.toString());
+        });
+  
 
 });
