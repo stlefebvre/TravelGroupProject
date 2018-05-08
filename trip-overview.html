@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Trip Overview</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Gugi" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="reset.css">
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Lora\Nunito|Nunito+Sans" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="itinerary-style.css" />
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Bootstrap CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script src="javascript.js"></script>
+
+
+</head>
+
+<body>
+    <header class="row headerRowCSS">
+        <div class="container" id="headerContainer">
+            <div class="navbar navbar-expand-lg flex-column flex-md-row" id="navbarCSS">
+                <a class="navbar-brand nav-left col-md-3 col-sm-12 col-xs-12" id="siteTitle" href="#">Trip Time!</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse col-md-auto col-sm-12 col-xs-12 justify-content-end nav-right" id="navbarSupportedContent">
+                    <ul class="navbar-nav" id="navButtons">
+                        <li class="nav-item nav-button" id="nav-button-Home">
+                            <a class="nav-link nav-button-link" href="#">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item nav-button">
+                            <a class="nav-link nav-button-link" href="#" id="logout">Logout
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="container">
+        <div class="row">
+            <nav class="nav flex-column col-md-2">
+                <p id="tripTasksHeader">Trip Checklist</p>
+                <a class="nav-link active tripTasks selectedTripTask" id="trip-overview" href="#">Trip Overview</a>
+                <a class="nav-link tripTasks" href="#">Accommodation</a>
+                <a class="nav-link tripTasks" href="#">Budget</a>
+                <a class="nav-link tripTasks" href="#">Packing List</a>
+            </nav>
+
+            <div class="col-md-10" text-align="center">
+                <div class="row">
+
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <ul class="list-group">
+                            <li class="list-group-item"><strong><span>Trip Name: </span></strong><span class="trip-overview" id="trip-name"></span></li>
+                            <li class="list-group-item" ><strong><span>Starting Point: </span></strong><span class="trip-overview" id="starting-point"></span></li>
+                            <li class="list-group-item"><strong><span>Travel Dates: </span></strong><span class="trip-overview" id="travel-dates"></span></li>
+                            <li class="list-group-item"><strong><span>Destination: </span></strong><span class="trip-overview" id="destination"></span></li>
+                            <li class="list-group-item"><strong><span>Interests: </span></strong><span class="trip-overview" id="interests"></span></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2"></div>               
+
+</body>
+
+</html>
