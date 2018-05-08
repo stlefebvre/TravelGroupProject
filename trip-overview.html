@@ -10,19 +10,11 @@
     <link rel="stylesheet" type="text/css" href="reset.css">
     <!--Google Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Lora\Nunito|Nunito+Sans" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" media="screen" href="itinerary-style.css" />
-    <!-- jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+  
     <!-- Bootstrap CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-    <!-- Firebase Reference -->
-    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-    <script src="javascript.js"></script>
-
-
+    <link rel="stylesheet" type="text/css" media="screen" href="itinerary-style.css">
+   
 </head>
 
 <body>
@@ -37,10 +29,15 @@
                 <div class="collapse navbar-collapse col-md-auto col-sm-12 col-xs-12 justify-content-end nav-right" id="navbarSupportedContent">
                     <ul class="navbar-nav" id="navButtons">
                         <li class="nav-item nav-button" id="nav-button-Home">
-                            <a class="nav-link nav-button-link" href="#">Home
+                            <a class="nav-link nav-button-link" href="home.html">Home
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
+                        <li class="nav-item nav-button" id="nav-button-Home">
+                                <a class="nav-link nav-button-link" href="newTrip.html">New Trip
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
                         <li class="nav-item nav-button">
                             <a class="nav-link nav-button-link" href="#" id="logout">Logout
                                 <span class="sr-only">(current)</span>
@@ -52,22 +49,19 @@
         </div>
     </header>
 
-
     <div class="container">
         <div class="row">
             <nav class="nav flex-column col-md-2">
-                <p id="tripTasksHeader">Trip Checklist</p>
-                <a class="nav-link active tripTasks selectedTripTask" id="trip-overview" href="#">Trip Overview</a>
-                <a class="nav-link tripTasks" href="#">Accommodation</a>
-                <a class="nav-link tripTasks" href="#">Budget</a>
-                <a class="nav-link tripTasks" href="#">Packing List</a>
-            </nav>
+                    <p id="tripTasksHeader">Trip Checklist</p>
+                    <a class="nav-link active tripTasks selectedTripTask" id="trip-overview" href="trip-overview.html">Trip Overview</a>
+                    <a class="nav-link tripTasks" href="directions-template.html">Directions</a>
+                    <a class="nav-link tripTasks" href="#">Accommodation</a>
+                    <a class="nav-link tripTasks" href="packing-list-template.html">Packing List</a>
+                    <a class="nav-link tripTasks" href="itinerary-activities.html">Activities</a>
+                </nav>
 
             <div class="col-md-10" text-align="center">
-                <div class="row">
-
-                </div>
-                <div class="row">
+                <div class="row m-3 p-5">
                     <div class="col-md-2"></div>
                     <div class="col-md-8">
                         <ul class="list-group">
@@ -78,7 +72,24 @@
                             <li class="list-group-item"><strong><span>Interests: </span></strong><span class="trip-overview" id="interests"></span></li>
                         </ul>
                     </div>
-                    <div class="col-md-2"></div>               
+                    <div class="col-md-2"></div>     
+                    </div> 
+                    </div>
+                    </div>
+                    </div>
+                    
+ <!-- bootstrap links        -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+    crossorigin="anonymous"></script>
+  <!-- Firebase reference-->
+  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+
+  <!-- link to external javascript -->
+  <script src="javascript.js"></script>
 
 </body>
 
