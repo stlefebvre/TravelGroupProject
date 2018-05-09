@@ -11,16 +11,11 @@
     <!--Google Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Lora\Nunito|Nunito+Sans" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="itinerary-style.css" />
-    <!-- jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 
     <!-- Bootstrap CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-    <!-- Firebase Reference -->
-    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-    <script src="javascript.js"></script>
 
 
 </head>
@@ -63,11 +58,11 @@
 
             <nav class="nav flex-column col-md-2">
                 <p id="tripTasksHeader">Trip Checklist</p>
-                <a class="nav-link tripTasks" href="trip-overview.html">Trip Overview</a>
-                <a class="nav-link tripTasks active selectedTripTask" href="#">Directions</a>
-                <a class="nav-link tripTasks" href="#">Accommodation</a>
+                <a class="nav-link tripTasks" id="trip-overview" href="trip-overview.html">Trip Overview</a>
+                <a class="nav-link active tripTasks selectedTripTask" id="maps" href="directions-template.html">Directions</a>
+                <a class="nav-link tripTasks" id="hotelsButton" href="itinerary-hotels.html">Accommodation</a>
                 <a class="nav-link tripTasks" href="packing-list-template.html">Packing List</a>
-                <a class="nav-link tripTasks" href="itinerary-activities.html">Activities</a>
+                <a class="nav-link tripTasks" id="activitiesButton"  href="itinerary-activities.html">Activities</a>
             </nav>
 
             <div class="col-md-10">
@@ -116,7 +111,14 @@
             };
         };
     </script>
+        <!-- jQuery -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBztLFObJ_vMG1zhWlzys8DWeiONElq2EI" async defer></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script src="javascript.js"></script>
 
 </body>
 

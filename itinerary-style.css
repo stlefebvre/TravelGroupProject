@@ -52,10 +52,6 @@ body {
     border-right: 2px solid;
 }
 
-/* #nav-button-Home {
-        border-right: 2px solid;
-    } */
-
 .nav-button-link {
     color: white;
     padding-left: 10px;
@@ -187,4 +183,12 @@ body {
 .drivingContent {
     font-weight: bold;
     color: maroon;
+}
+#aboutUsText {
+    color: white;
+}
+
+#start {
+    color: white;
+    border-style: double;
 }
