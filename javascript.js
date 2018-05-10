@@ -100,11 +100,10 @@ $(document).ready(function () {
         var destCity = $("#destination-city").val().trim();
         var destState = $("#destination-state").val().trim();
         var interestsCheck = [];
-        $("input[type='checkbox']").each(function (i, selectedElement) {
+        $("input[type='checkbox']:checked").each(function (i, selectedElement) {
             interestsCheck[i] = $(selectedElement).val();
         });
 
-        console.log(interestsCheck)
 
         // Creates local "temporary" object for holding new train data
         var newTrip = {
@@ -314,7 +313,7 @@ $(document).ready(function () {
     
    
     var url = "https://fast-ridge-58490.herokuapp.com/yelp/search?term=" + term + "&price=" + "&location=" + location + "&radius=16093&limit=3"
-    console.log(url)
+
 
     //AJAX for hotels
     var hotelSearch = {
@@ -327,9 +326,7 @@ $(document).ready(function () {
 
 
     $.ajax(hotelSearch).then(function (response) {
-        console.log(response + "Where is response")
         var businesses = response.businesses;
-        console.log(businesses)
         //List set outside of the function so that it can be called for multiple loops
         var hotelList = $("<ul>")
 
